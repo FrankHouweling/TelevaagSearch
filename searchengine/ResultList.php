@@ -1,4 +1,5 @@
 <?php
+require_once "lib/XMLSerializer.php";
 
 class ResultList implements Iterator{
  
