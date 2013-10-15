@@ -45,7 +45,7 @@ class Document{
     * Construct a new Document instance from a JSON result-document.
     *
     */
-   static public function buildFromJson( $jsonText ){
+   public static function buildFromJson( $jsonText ){
       $content = json_decode( $jsonText );
       return new Document($content['id'], $content['title'], 
                           $content['author'], $content['url'], $content['content']);
