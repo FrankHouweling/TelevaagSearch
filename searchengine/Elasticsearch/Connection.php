@@ -1,5 +1,7 @@
 <?php
 
+class UnknownSendMethodException extends Exception{ }
+
 class ElasticsearchConnection{
    static $connection;
    
@@ -16,8 +18,10 @@ class ElasticsearchConnection{
    
    public function send( $method, $json ){
       $method = strtolower($method);
-      if( !in_array($method, array("put", "get", "delete", "set")) ){
-      }
+      if( !in_array($method, array("put", "get", "delete", "set")) )
+         throw new UnknownSendMethodException();
+      
+      curl();  //  Curl stuf, you know how..
    }
    
 }
