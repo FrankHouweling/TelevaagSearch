@@ -36,6 +36,7 @@ class Document{
     * Called after each setter to save data to ElasticSearch
     *
     */
+   
    private function save(){
       // @todo Implement ElasticSearch
    }
