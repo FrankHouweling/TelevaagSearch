@@ -7,8 +7,14 @@
  */
 
 class Document{
+   private $id, $title, $author, $url;
    
-   public function __construct( $docId, $docTitle, $docAuthor, $docUrl, $docContent ){
+   public function __construct( $docId, $docTitle, Author $docAuthor, $docUrl, $docContent ){
+      $this->id = $docId;
+      $this->title = $docTitle;
+      $this->author = $docAuthor;
+      $this->url = $url;
+      $this->content = $docContent;
    }
    
    // Getters
@@ -49,7 +55,7 @@ class Document{
    public static function buildFromJson( $jsonText ){
       $content = json_decode( $jsonText );
       return new Document($content['id'], $content['title'], 
-                          $content['author'], $content['url'], $content['content']);
+                          new Author($content['author']), $content['url'], $content['content']);
    }
    
 }
