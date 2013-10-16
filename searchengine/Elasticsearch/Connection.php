@@ -35,7 +35,10 @@ class ElasticsearchConnection{
      // send request and wait for responce
      $responce =  json_decode(curl_exec($this->curl),true);
      
+     var_dump( $options );
+     
      var_dump( $responce );
+     echo curl_error($this->curl);
      exit;
      
      return($responce);
