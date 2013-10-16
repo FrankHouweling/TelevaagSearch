@@ -11,30 +11,32 @@ class ElasticsearchConnection{
    }
    
    static function getInstance(){
-      if( !isset( self::connection ) ){
-         self::connection = new ElasticsearchConnection();
+      if( !isset( self::$connection ) ){
+         self::$connection = new ElasticsearchConnection();
       }
-      return self::connection;
+      return self::$connection;
    }
    
    /*
     * Please rewrite, copy-pasted this from the internet. It works.
     */
    
-   
    private function restRequest($method,$uri,$query=NULL,$json=NULL,$options=NULL){
       
      // Compose querry
      $options = array(
-       CURLOPT_URL => $config['ELASTICSEARCH_HOST']."/".$config['ELASTICSEARCH_DB'].$uri.$qr,
+       CURLOPT_URL => "http://localhost:9200/zoekmachine/".$uri.$qr,
        CURLOPT_CUSTOMREQUEST => $method, // GET POST PUT PATCH DELETE HEAD OPTIONS 
        CURLOPT_POSTFIELDS => $json,
      ); 
-      
+     
      curl_setopt_array($this->curl, $options); 
    
      // send request and wait for responce
      $responce =  json_decode(curl_exec($this->curl),true);
+     
+     var_dump( $responce );
+     exit;
      
      return($responce);
    }
@@ -46,7 +48,7 @@ class ElasticsearchConnection{
     *
     */
    
-   public function send( $method, $url, $query, $json ){
+   public function send( $method, $uri, $query, $json ){
       $method = strtoupper($method);
       if( !in_array($method, array("PUT", "GET", "DELETE", "POST", "HEAD", "OPTIONS")) )
          throw new UnknownSendMethodException();
@@ -54,14 +56,13 @@ class ElasticsearchConnection{
       if(is_array($json))
          $json = json_encode($json);
       
-       if( $query !== NULL && !is_array($query) ){
+      if( $query !== NULL && !is_array($query) ){
          $qr = "?".$query;
       }
       else if($query !== NULL && is_array($query)){
          $qr = "?".$query[0];
          
-         // @todo remove the first item, is that array_pop?
-         array_pop($query)
+         $query = array_shift($query);
             
          $qr = $qr . implode('&', $query);
       }
@@ -69,7 +70,7 @@ class ElasticsearchConnection{
          $qr = "";   // Empty
       }
       
-      $this->restRequest($method, $url, $qr, $json);
+      return $this->restRequest($method, $uri, $qr, $json);
    }
    
 }

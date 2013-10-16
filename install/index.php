@@ -7,5 +7,10 @@
  *
  */
 
+require_once "Telegraaf/Importer.php";
+
+$importer = new TelegraafImporter();
+$importer->runImport();
+
 
 ?>
