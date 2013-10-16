@@ -9,6 +9,8 @@
 
 require_once "Telegraaf/Importer.php";
 
+// Import Telegraaf Articles
+
 $importer = new TelegraafImporter();
 $importer->runImport();
 

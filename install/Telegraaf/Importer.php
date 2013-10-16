@@ -10,22 +10,20 @@ class ImportDirNotWritableException extends Exception{}
 class TelegraafImporter implements Importer{
    
    public function runImport($dataSrc = "Telegraaf/Data/"){
-      
-      if ($handle = opendir($dataSrc)) {
-         
-          /* This is the correct way to loop over the directory. */
-          while (false !== ($entry = readdir($handle))) {
-              if( !in_array($entry, array('.', '..', '.DS_Store')) ){
-                  $this->loadDataFromXml( $dataSrc . $entry );
-              }
-          }
-      
-          closedir($handle);
-      }
-      else{
+      $handle = opendir($dataSrc)
+      if (!$handle) {
          throw new ImportDirNotWritableException();
       }
       
+      /* This is the correct way to loop over the directory. */
+      while (false !== ($entry = readdir($handle))) {
+          if( !in_array($entry, array('.', '..', '.DS_Store')) ){
+              $this->loadDataFromXml( $dataSrc . $entry );
+          }
+      }
+   
+      closedir($handle);
+
    }
    
    private function loadDataFromXml( $srcUrl ){
@@ -41,10 +39,12 @@ class TelegraafImporter implements Importer{
       @$document->loadXML($content);
 
       foreach( $document->getElementsByTagName("root") as $element ){
-         $element = $element->getElementsByTagName("text");
+         $text = $element->getElementsByTagName("text");
+         $title = $element->getElementsByTagName('title');
+         
+         
          $q = new ElasticsearchQuery();
-         echo $q->insert( "telegraafarticle", json_encode(array( "text" => $element->item(0)->nodeValue)) );
-         exit;
+         $q->insert( "telegraafarticle", json_encode(array( "text" => $text->item(0)->nodeValue, "title" => $title)) );
       }
       
    }

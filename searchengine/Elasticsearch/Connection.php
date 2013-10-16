@@ -35,13 +35,21 @@ class ElasticsearchConnection{
      // send request and wait for responce
      $responce =  json_decode(curl_exec($this->curl),true);
      
-     var_dump( $options );
-     
-     var_dump( $responce );
-     echo curl_error($this->curl);
-     exit;
-     
      return($responce);
+   }
+   
+   private static function queryBuilder( $query ){
+      if( $query !== NULL && !is_array($query) ){
+         return "?".$query;
+      }
+      else if($query !== NULL && is_array($query)){
+         $qr = "?".$query[0];
+         
+         $query = array_shift($query);
+            
+         return $qr . implode('&', $query);
+      }
+      return $qr = "";   // Empty
    }
    
    /**
@@ -59,19 +67,7 @@ class ElasticsearchConnection{
       if(is_array($json))
          $json = json_encode($json);
       
-      if( $query !== NULL && !is_array($query) ){
-         $qr = "?".$query;
-      }
-      else if($query !== NULL && is_array($query)){
-         $qr = "?".$query[0];
-         
-         $query = array_shift($query);
-            
-         $qr = $qr . implode('&', $query);
-      }
-      else{
-         $qr = "";   // Empty
-      }
+      $qr = $this->queryBuilder( $qr );
       
       return $this->restRequest($method, $uri, $qr, $json);
    }

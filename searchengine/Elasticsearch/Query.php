@@ -10,7 +10,7 @@ class ElasticsearchQuery{
    
    function insert( $dataType, $jsonData ){
       $con = ElasticsearchConnection::getInstance();
-      $return = $con->send( "PUT", $dataType, "", $jsonData );
+      $return = $con->send( "POST", $dataType, "", $jsonData );
       return $return;
    }
    
