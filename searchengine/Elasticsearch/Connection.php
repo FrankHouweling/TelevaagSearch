@@ -23,20 +23,6 @@ class ElasticsearchConnection{
    
    
    private function restRequest($method,$uri,$query=NULL,$json=NULL,$options=NULL){
-      if( $query !== NULL && !is_array($query) ){
-         $qr = "?".$query;
-      }
-      else if($query !== NULL && is_array($query)){
-         $qr = "?".$query[0];
-         
-         // @todo remove the first item, is that array_pop?
-         array_pop($query)
-            
-         $qr = $qr . implode('&', $query);
-      }
-      else{
-         $qr = "";   // Empty
-      }
       
      // Compose querry
      $options = array(
@@ -60,7 +46,7 @@ class ElasticsearchConnection{
     *
     */
    
-   public function send( $method, $json ){
+   public function send( $method, $url, $query, $json ){
       $method = strtoupper($method);
       if( !in_array($method, array("PUT", "GET", "DELETE", "POST", "HEAD", "OPTIONS")) )
          throw new UnknownSendMethodException();
@@ -68,7 +54,22 @@ class ElasticsearchConnection{
       if(is_array($json))
          $json = json_encode($json);
       
-      curl();  //  Curl stuf, you know how..
+       if( $query !== NULL && !is_array($query) ){
+         $qr = "?".$query;
+      }
+      else if($query !== NULL && is_array($query)){
+         $qr = "?".$query[0];
+         
+         // @todo remove the first item, is that array_pop?
+         array_pop($query)
+            
+         $qr = $qr . implode('&', $query);
+      }
+      else{
+         $qr = "";   // Empty
+      }
+      
+      $this->restRequest($method, $url, $qr, $json);
    }
    
 }
