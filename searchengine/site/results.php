@@ -18,6 +18,19 @@
 		</ul>
 		</div>
 	</nav>
+		<div class="filter">
+			<ul>
+				<li class="selected"><a href="#">Kamervragen</a></li>
+				<li><a href="#">Kranten</a></li>
+				<li><a href="#">Nog iets</a></li>
+				<li class="right">
+					<button type="button" class="btn btn-default">
+						<span class="glyphicon glyphicon-cog"></span>
+					</button>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
 	<div class="container">
 		<div class="info">
 			Page 1 of about 100.000 results (0.22 seconds)

@@ -57,3 +57,46 @@
   text-align: center;
   margin-top:25%
 }
+.filter {
+	border-bottom: #dedede 1px solid;
+	padding: 0px 30px;
+	margin-bottom: 20px;
+}
+.filter ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	list-style-type: none;
+}
+.filter ul li {
+	display: inline-block;
+	margin-right: 20px;
+	font-size: 12px;
+}
+.filter ul li a {
+	color: #666;
+	display: block;
+	padding: 10px 0px;
+}
+.filter ul li a:hover {
+	color:#000000;
+}
+.filter ul li.selected  {
+	border-bottom: #DD4B39 3px solid;
+}
+.filter ul li.selected a {
+	color: #DD4B39;
+}
+.filter ul li.selected a:hover {
+	color: #DD4B39;
+}
+.filter ul li.right button {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.right {
+	float:right;
+}
+.clear {
+	clear: both;
+}
