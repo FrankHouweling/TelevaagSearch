@@ -20,9 +20,9 @@
 	</nav>
 		<div class="filter">
 			<ul>
-				<li class="selected"><a href="#">Kamervragen</a></li>
-				<li><a href="#">Kranten</a></li>
-				<li><a href="#">Nog iets</a></li>
+			   <li class="selected"><a href="#">Alle bronnen</a></li>
+				<li><a href="#">Kamervragen</a></li>
+				<li><a href="#">Telegraaf</a></li>
 				<li class="right">
 					<button type="button" class="btn btn-default">
 						<span class="glyphicon glyphicon-cog"></span>
@@ -44,6 +44,56 @@
 				</p>
 			</div>
 		</div>
+		<div class="results">
+			<div class="result">
+				<a href="#">This is a search result</a>
+				<span class="url">http://urltoresult.com/page/blaat/</span>
+				<p>
+					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
+				</p>
+			</div>
+		</div>
+
+		<div class="results">
+			<div class="result">
+				<a href="#">This is a search result</a>
+				<span class="url">http://urltoresult.com/page/blaat/</span>
+				<p>
+					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
+				</p>
+			</div>
+		</div>
+
+		<div class="results">
+			<div class="result">
+				<a href="#">This is a search result</a>
+				<span class="url">http://urltoresult.com/page/blaat/</span>
+				<p>
+					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
+				</p>
+			</div>
+		</div>
+
+		<div class="results">
+			<div class="result">
+				<a href="#">This is a search result</a>
+				<span class="url">http://urltoresult.com/page/blaat/</span>
+				<p>
+					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
+				</p>
+			</div>
+		</div>
+
+		<div class="results">
+			<div class="result">
+				<a href="#">This is a search result</a>
+				<span class="url">http://urltoresult.com/page/blaat/</span>
+				<p>
+					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
+				</p>
+			</div>
+		</div>
+
 		<div class="pagination">
 			<ul>
 				<li class="previous">
