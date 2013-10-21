@@ -1,0 +1,59 @@
+.navbar-nav {
+  margin-top:5px;
+}
+.navbar-brand img {
+  margin-top: 6px;
+}
+.info {
+	color: #999;
+	margin-bottom: 15px;
+	font-size: 13px;
+}
+.results {
+	font-family: arial, sans-serif;
+	width: 800px;
+}
+.results .result a {
+	color: #1E0FBE;
+	display: block;
+	text-decoration: underline;
+	font-size:14px;
+}
+.results .result .url {
+	color: #006621;
+	font-size: 12px;
+}
+.results .result p {
+	color: #444;
+}
+.pagination {
+	margin: 30px 0 0 30px;
+}
+.pagination ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	list-style-type: none;
+}
+.pagination ul li {
+	display: inline-block;
+}
+.pagination ul li a {
+	color: #1E0FBE;
+}
+.pagination ul li.number-item {
+	text-align: center;
+}
+.pagination ul li.previous {
+	text-align: right;
+	margin-right: 15px;
+}
+.pagination ul li.next {
+	margin-left: 15px;
+}
+.floater {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top:25%
+}
