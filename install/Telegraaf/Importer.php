@@ -10,7 +10,7 @@ class ImportDirNotWritableException extends Exception{}
 class TelegraafImporter implements Importer{
    
    public function runImport($dataSrc = "Telegraaf/Data/"){
-      $handle = opendir($dataSrc)
+      $handle = opendir($dataSrc);
       if (!$handle) {
          throw new ImportDirNotWritableException();
       }
@@ -44,7 +44,7 @@ class TelegraafImporter implements Importer{
          
          
          $q = new ElasticsearchQuery();
-         $q->insert( "telegraafarticle", json_encode(array( "text" => $text->item(0)->nodeValue, "title" => $title)) );
+         $q->insert( "telegraafarticle", json_encode(array( "text" => $text->item(0)->nodeValue, "title" => $title->item(0)->nodeValue)) );
       }
       
    }
