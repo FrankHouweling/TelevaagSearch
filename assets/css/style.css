@@ -19,6 +19,9 @@
 	text-decoration: underline;
 	font-size:14px;
 }
+.results .result em{
+   font-weight:bold;
+}
 .results .result .url {
 	color: #006621;
 	font-size: 12px;

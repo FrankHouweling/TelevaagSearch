@@ -9,7 +9,7 @@
 class Document{
    private $id, $title, $author, $url;
    
-   public function __construct( $docId, $docTitle, Author $docAuthor, $docUrl, $docContent ){
+   public function __construct( $docId, $docTitle, $docAuthor, $docUrl, $docContent ){
       $this->id = $docId;
       $this->title = $docTitle;
       $this->author = $docAuthor;
@@ -24,15 +24,38 @@ class Document{
    }
    
    public function getTitle(){
-      return $this->title;
+      if( strlen($this->title) > 0 )
+         return $this->title;
+      return $this->generateTitle();
    }
    
    public function getAuthor(){
       return $this->author;  
    }
    
+   public function getContent(){
+      return $this->content;
+   }
+   
    public function getUrl(){
       return $this->url;  
+   }
+   
+   public function getLink(){
+      return $this->url;
+   }
+   
+   public function hasAuthor(){
+      if( $this->author instanceof Author ){
+         return true;
+      }
+      else{
+         return false;
+      }
+   }
+   
+   public function getPreview(){
+      return $this->content;
    }
    
    // Setters

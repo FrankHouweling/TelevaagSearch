@@ -1,5 +1,10 @@
 <?php
 
+require_once "searchengine/Elasticsearch/Query.php";
+require_once "searchengine/ResultList.php";
+require_once "searchengine/Document.php";
+require_once "searchengine/Author.php";
+
 function render( $vars ){
    $templatename = func_get_arg(0);
    
@@ -12,7 +17,7 @@ function render( $vars ){
    }
    
    foreach( $args as $key => $val ){
-      $$key = val;
+      $$key = $val;
    }
    
    include( $templatename );
@@ -21,20 +26,27 @@ function render( $vars ){
 if( $_SERVER['PATH_INFO'] == NULL ){
    if( isset( $_GET['q'] ) ){
    
-      // Dummy data
+      $query = new ElasticsearchQuery();
+      $data  = $query->search( $_GET['q'] );
+      $display = array();
+      $display['result_total_num'] = $data->hits->total;
+      $display['processing_time'] = 0.01;
       
-      $resultset = new ResultList();
+      // Moving this to a seperate function would be better.. but for now i'm lazy
       
-      $resultset->add( 
-         new Document(  "arandomid", 
-                        "This is a title", 
-                        new Author("Frank Houweling"), 
-                        "http://www.google.nl/", 
-                        "This is the content." 
-                     ) 
-                     );
+      $resultlist =  new ResultList();
+      foreach( $data->hits->hits as $data ){
+         $resultlist->add(
+               new Document(
+                  $data->_id, $data->_source->title, NULL, 
+                  "http://google.nl/", $data->highlight->text[0]
+               )
+            );
+      }
+      
+      $display['resultset'] = $resultlist;
    
-      render( "searchengine/site/results.php" );
+      render( "searchengine/site/results.php", $display );
    }
    else{
       render( "searchengine/site/index.php" );

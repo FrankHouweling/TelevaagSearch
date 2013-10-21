@@ -25,17 +25,19 @@ class ElasticsearchConnection{
       
      // Compose querry
      $options = array(
-       CURLOPT_URL => "http://localhost:9200/zoekmachine/".$uri.$qr,
+       CURLOPT_URL => "http://localhost:9200/zoekmachine/".$uri.$query,
        CURLOPT_CUSTOMREQUEST => $method, // GET POST PUT PATCH DELETE HEAD OPTIONS 
        CURLOPT_POSTFIELDS => $json,
+       CURLOPT_RETURNTRANSFER => true
      ); 
      
-     curl_setopt_array($this->curl, $options); 
+     curl_setopt_array($this->curl, $options);
    
      // send request and wait for responce
-     $responce =  json_decode(curl_exec($this->curl),true);
+     $response = curl_exec($this->curl);
+     $returnAr =  json_decode($response,false);
      
-     return($responce);
+     return $returnAr;
    }
    
    private static function queryBuilder( $query ){
@@ -45,7 +47,11 @@ class ElasticsearchConnection{
       else if($query !== NULL && is_array($query)){
          $qr = "?".$query[0];
          
-         $query = array_shift($query);
+         array_shift($query);
+         
+         // Fix for arrays that consist of one part...
+         if( count($query) == 0 )
+            return $qr;
             
          return $qr . implode('&', $query);
       }
@@ -59,7 +65,7 @@ class ElasticsearchConnection{
     *
     */
    
-   public function send( $method, $uri, $query, $json ){
+   public function send( $method, $uri, $query = NULL, $json = NULL ){
       $method = strtoupper($method);
       if( !in_array($method, array("PUT", "GET", "DELETE", "POST", "HEAD", "OPTIONS")) )
          throw new UnknownSendMethodException();
@@ -67,7 +73,7 @@ class ElasticsearchConnection{
       if(is_array($json))
          $json = json_encode($json);
       
-      $qr = $this->queryBuilder( $qr );
+      $qr = $this->queryBuilder( $query );
       
       return $this->restRequest($method, $uri, $qr, $json);
    }

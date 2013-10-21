@@ -3,14 +3,15 @@ require_once "lib/XMLSerializer.php";
 
 class ResultList implements Iterator{
  
-   $list = [];
+   private $list = array(), $position;
    
    function __construct(){
       // Initializes empty one
+      $this->position = 0;
    }
    
    public function add( Document $document ){
-      $this->list[] = $document
+      $this->list[] = $document;
    }
    
    public function addFromJson( $jsonText ){
@@ -36,7 +37,27 @@ class ResultList implements Iterator{
       return json_encode( $this->list );  
    }
    
-   // @todo The iterator stuff
+   // The iterator stuff
+   
+   function rewind() {
+       $this->position = 0;
+   }
+
+   function current() {
+      return $this->list[$this->position];
+   }
+
+   function key() {
+      return $this->position;
+   }
+
+   function next() {
+      ++$this->position;
+   }
+
+   function valid() {
+      return isset($this->list[$this->position]);
+   }
    
 }
 
