@@ -14,6 +14,12 @@ class ElasticsearchQuery{
       return $return;
    }
    
+   function search( $query, $dataType = false ){
+      $con = ElasticsearchConnection::getInstance();
+      $return = $con->send( "GET", "_search", array( "query" => "marx'" ) );
+      return $return;
+   }
+   
 }
 
 ?>

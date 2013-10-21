@@ -2,14 +2,14 @@
 <html>
 <head>
   <title>Index</title>
-  <link href="css/bootstrap.min.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
-  <link href="css/style.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
-  <script lang="javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
+  <link href="assets/css/bootstrap.min.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
+  <link href="assets/css/style.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
+  <script lang="javascript" type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-static-top" role="navigation">
 		<a class="navbar-brand" href="#">
-			<img src="img/marxgle-small.png" />
+			<img src="assets/img/marxgle-small.png" />
 		</a>
 		<div class="collapse navbar-collapse navbar-ex7-collapse">
 		<ul class="nav navbar-nav navbar-right">
@@ -20,9 +20,9 @@
 	</nav>
 	<div class="container">
 		<div class="floater">
-			<img src="img/Marxgle.gif" />
-			<form action="results.php">
-				<input type="text" class="form-control" placeholder="e.g. Frank houweling" /><br/>
+			<img src="assets/img/Marxgle.gif" />
+			<form action="./">
+				<input type="text" class="form-control" name="q" placeholder="e.g. Das Kapital" /><br/>
 				<button type="submit" class="btn btn-default">Marxgle Search</button>
 				<button type="button" class="btn btn-default">I'm feeling gelukkig</button>
 			</form>

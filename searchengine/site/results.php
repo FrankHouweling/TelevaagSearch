@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Results</title>
+  <title><?=$query?> - Marxgle</title>
   <link href="css/bootstrap.min.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
   <link href="css/style.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
   <script lang="javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -33,66 +33,24 @@
 		</div>
 	<div class="container">
 		<div class="info">
-			Page 1 of about 100.000 results (0.22 seconds)
+			Page <?=$page_num?> of about <?=$result_total_num?> results (<?=$processing_time?> seconds)
 		</div>
+		<?php foreach( $resultset as $result ): ?>
 		<div class="results">
 			<div class="result">
-				<a href="#">This is a search result</a>
-				<span class="url">http://urltoresult.com/page/blaat/</span>
+				<a href="#"><?=$result->getTitle()?></a>
+				<span class="url"><?=$result->getLink()?></span>
+				<?php if($result->hasAuthor()): ?>
+				<span class="author">
+				  <a href="?author=<?=$result->getAuthor()?>"><?=$result->getAuthor()?></a>
+			   </span>
+				<?php endif; ?>
 				<p>
-					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
+   				<?=$result->getPreview()?>
 				</p>
 			</div>
 		</div>
-		<div class="results">
-			<div class="result">
-				<a href="#">This is a search result</a>
-				<span class="url">http://urltoresult.com/page/blaat/</span>
-				<p>
-					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
-				</p>
-			</div>
-		</div>
-
-		<div class="results">
-			<div class="result">
-				<a href="#">This is a search result</a>
-				<span class="url">http://urltoresult.com/page/blaat/</span>
-				<p>
-					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
-				</p>
-			</div>
-		</div>
-
-		<div class="results">
-			<div class="result">
-				<a href="#">This is a search result</a>
-				<span class="url">http://urltoresult.com/page/blaat/</span>
-				<p>
-					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
-				</p>
-			</div>
-		</div>
-
-		<div class="results">
-			<div class="result">
-				<a href="#">This is a search result</a>
-				<span class="url">http://urltoresult.com/page/blaat/</span>
-				<p>
-					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
-				</p>
-			</div>
-		</div>
-
-		<div class="results">
-			<div class="result">
-				<a href="#">This is a search result</a>
-				<span class="url">http://urltoresult.com/page/blaat/</span>
-				<p>
-					Ever since I <strong>bought</strong> my SSL certificate yesterday, my theme's main font no longer works. It gets automatically switched to Times New Roman. I now force a SSL ...
-				</p>
-			</div>
-		</div>
+		<?php endforeach; ?>
 
 		<div class="pagination">
 			<ul>
@@ -105,7 +63,7 @@
 				<li>
 					<img src="img/m.png" /><br/><br/>
 				</li>
-				<? for($i=1;$i<13;$i++) { ?>
+				<? for($i=1;$i<$total_page_num;$i++) { ?>
 				<li class="number-item">
 					<a href="#">
 						<img border="0" src="img/a.png" /><br/><?=$i?>
