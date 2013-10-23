@@ -27,7 +27,13 @@ if( $_SERVER['PATH_INFO'] == NULL ){
    if( isset( $_GET['q'] ) ){
    
       $query = new ElasticsearchQuery();
-      $data  = $query->search( $_GET['q'] );
+      
+      $source = "";
+      if( isset($_GET['source']) && in_array($_GET['source'], array("telegraafarticle", "kamervraag")) ){
+         $source = $_GET['source'];
+      }
+      
+      $data  = $query->search( $_GET['q'], $source );
       $display = array();
       $display['result_total_num'] = $data->hits->total;
       $display['processing_time'] = $data->tooktime;

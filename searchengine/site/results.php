@@ -20,9 +20,33 @@
 	</nav>
 		<div class="filter">
 			<ul>
-			   <li class="selected"><a href="#">Alle bronnen</a></li>
-				<li><a href="#">Kamervragen</a></li>
-				<li><a href="#">Telegraaf</a></li>
+			   <li
+			   <?php
+			      if( !isset($_GET['source']) ){
+			         ?>
+			         class="selected"
+			         <?
+			      }
+			   ?>
+			   ><a href="?q=<?=$_GET['q']?>">Alle bronnen</a></li>
+				<li
+				<?php
+			      if( $_GET['source'] == "kamervraag" ){
+			         ?>
+			         class="selected"
+			         <?
+			      }
+			   ?>
+			   ><a href="?q=<?=$_GET['q']?>&source=kamervraag">Kamervragen</a></li>
+				<li
+				<?php
+			      if( $_GET['source'] == "telegraafarticle" ){
+			         ?>
+			         class="selected"
+			         <?
+			      }
+			   ?>
+				><a href="?q=<?=$_GET['q']?>&source=telegraafarticle">Telegraaf</a></li>
 				<li class="right">
 					<button type="button" class="btn btn-default">
 						<span class="glyphicon glyphicon-cog"></span>

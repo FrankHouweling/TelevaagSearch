@@ -60,7 +60,7 @@ class Document{
    public function getLink(){
       if( strpos($this->link, "geencommentaar.nl") ){
          $split = explode( "&filename=", $this->link );
-         return "http://www.polidocs.nl/XML/KVR/" . $split[1] . ".xml";
+         return "http://www.polidocs.nl/XML/KVR/" . trim($split[1]) . ".xml";
       }
       else{
          return $this->link;
