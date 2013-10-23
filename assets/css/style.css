@@ -11,10 +11,13 @@
 }
 .results {
 	font-family: arial, sans-serif;
-	width: 800px;
+	width: 100%;
 }
 .results:nth-child(even){
    background-color:#f7f7f7;
+}
+.results .result{
+   padding:10px;
 }
 .results .result a {
 	color: #1E0FBE;
