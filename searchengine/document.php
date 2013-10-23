@@ -31,7 +31,7 @@ class Document{
    }
    
    public function generateTitle(){
-      $content = $this->content;
+      $content = strip_tags($this->content);
       $split = explode(".", $content);
       
       $val = "";
