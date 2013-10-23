@@ -122,21 +122,3 @@
 .navbar-form{
    margin:15px;
 }
-.advanced-search table {
-	width: 800px;
-}
-.advanced-search table tr td h2 {
-	font-size: 22px;
-}
-.advanced-search table tr td input[type='text'] {
-	width: 400px;
-}
-.advanced-search table tr td input.date {
-	width: 188px;
-}
-.advanced-search table tr td label {
-	font-weight: normal;
-}
-.advanced-search table tr td input[type='radio'] {
-	margin-left: 30px;
-}
