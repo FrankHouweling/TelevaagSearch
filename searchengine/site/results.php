@@ -104,17 +104,17 @@
 					</a>
 				</li>
 				<li>
-					<img src="img/m.png" /><br/><br/>
+					<img src="assets/img/m.png" /><br/><br/>
 				</li>
-				<? for($i=1;$i<$total_page_num;$i++) { ?>
+				<? for($i=1;$i<10;$i++) { ?>
 				<li class="number-item">
 					<a href="#">
-						<img border="0" src="img/a.png" /><br/><?=$i?>
+						<img border="0" src="assets/img/a.png" /><br/><?=$i?>
 					</a>
 				</li>
 				<? } ?>
 				<li>
-					<img src="img/rxgle.png" /><br/><br/>
+					<img src="assets/img/rxgle.png" /><br/><br/>
 				</li>
 				<li class="next">
 					<a href="#">
