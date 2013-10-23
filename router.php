@@ -38,6 +38,8 @@ if( $_SERVER['PATH_INFO'] == NULL ){
       $display['result_total_num'] = $data->hits->total;
       $display['processing_time'] = $data->tooktime;
       
+      $display['page_num'] = 1;
+      
       // Moving this to a seperate function would be better.. but for now i'm lazy
       
       $resultlist =  new ResultList();

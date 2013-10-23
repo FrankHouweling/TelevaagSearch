@@ -11,6 +11,12 @@
 		<a class="navbar-brand" href="#">
 			<img src="assets/img/marxgle-small.png" />
 		</a>
+		<form class="navbar-form navbar-left" role="search">
+         <div class="form-group">
+           <input type="text" class="form-control" value="<?=$_GET['q']?>">
+         </div>
+         <button type="submit" class="btn btn-default">Search</button>
+       </form>
 		<div class="collapse navbar-collapse navbar-ex7-collapse">
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="/logs">Marxgle+</a></li>
