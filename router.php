@@ -60,7 +60,7 @@ if( $_SERVER['PATH_INFO'] == NULL ){
    else if( isset( $_GET['timeline'] ) ){
    
       $query = new ElasticsearchQuery();
-      $data  = $query->search( $_GET['timeline'], $source, 0, 50 );
+      $data  = $query->search( $_GET['timeline'], $source, 0, 40 );
       
       $resultlist =  new ResultList();
       foreach( $data->hits->hits as $data ){
