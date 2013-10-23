@@ -30,7 +30,7 @@ if( $_SERVER['PATH_INFO'] == NULL ){
       $data  = $query->search( $_GET['q'] );
       $display = array();
       $display['result_total_num'] = $data->hits->total;
-      $display['processing_time'] = 0.01;
+      $display['processing_time'] = $data->tooktime;
       
       // Moving this to a seperate function would be better.. but for now i'm lazy
       

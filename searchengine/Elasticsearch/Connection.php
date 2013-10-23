@@ -42,7 +42,10 @@ class ElasticsearchConnection{
      // send request and wait for responce
      $response = curl_exec($this->curl);
      
+     $timeinfo =  curl_getinfo($this->curl, CURLINFO_TOTAL_TIME);
+     
      $returnAr =  json_decode($response,false);
+     $returnAr->tooktime = (string) $timeinfo;
      
      return $returnAr;
    }
