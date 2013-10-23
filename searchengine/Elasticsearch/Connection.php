@@ -25,7 +25,7 @@ class ElasticsearchConnection{
       
      // Compose querry
      $options = array(
-       CURLOPT_URL => "http://localhost:9200/zoekmachine/".$uri.$query,
+       CURLOPT_URL => "http://86.93.138.176:9200/zoekmachine/".$uri.$query,
        CURLOPT_CUSTOMREQUEST => $method, // GET POST PUT PATCH DELETE HEAD OPTIONS 
        CURLOPT_POSTFIELDS => $json,
        CURLOPT_RETURNTRANSFER => true
