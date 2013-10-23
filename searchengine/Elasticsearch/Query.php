@@ -14,15 +14,19 @@ class ElasticsearchQuery{
       return $return;
    }
    
-   function search( $query, $dataType = "", $van = 0 ){
+   function search( $query, $dataType = "", $van = 0, $tot = false ){
       $con = ElasticsearchConnection::getInstance();
       
       if( $dataType !== "" )
          $dataType = $dataType . "/";
       
+      if( $tot == false ){
+         $tot = ( $van+20 );
+      }
+      
       $return = $con->send( "GET",  $dataType . "_search", NULL, 
         '{
-           "from" : ' . $van . ', "size" : ' . ( $van+20 ) . ',
+           "from" : ' . $van . ', "size" : ' . $tot . ',
            "query": {
                  "query_string": {
                      "query": "' . $query . '"
