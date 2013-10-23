@@ -39,7 +39,8 @@ if( $_SERVER['PATH_INFO'] == NULL ){
          $resultlist->add(
                new Document(
                   $data->_id, $data->_source->title, NULL, 
-                  "http://google.nl/", $data->highlight->text[0]
+                 $data->_source->link, $data->highlight->text[0],
+                 $data->_source->date
                )
             );
       }

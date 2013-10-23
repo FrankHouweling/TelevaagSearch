@@ -38,7 +38,7 @@
 		<?php foreach( $resultset as $result ): ?>
 		<div class="results">
 			<div class="result">
-				<a href="#"><?=$result->getTitle()?></a>
+				<a href="<?=$result->getLink()?>"><?=$result->getTitle()?></a>
 				<span class="url"><?=$result->getLink()?></span>
 				<?php if($result->hasAuthor()): ?>
 				<span class="author">
@@ -47,6 +47,9 @@
 				<?php endif; ?>
 				<p>
    				<?=$result->getPreview()?>
+   				<span class="date">
+   			      <?=$result->getDate()?>
+   			   </span>
 				</p>
 			</div>
 		</div>

@@ -7,14 +7,15 @@
  */
 
 class Document{
-   private $id, $title, $author, $url;
+   private $id, $title, $author, $link, $date;
    
-   public function __construct( $docId, $docTitle, $docAuthor, $docUrl, $docContent ){
+   public function __construct( $docId, $docTitle, $docAuthor, $docUrl, $docContent, $date ){
       $this->id = $docId;
       $this->title = $docTitle;
       $this->author = $docAuthor;
-      $this->url = $url;
+      $this->link = $docUrl;
       $this->content = $docContent;
+      $this->date = $date;
    }
    
    // Getters
@@ -29,6 +30,25 @@ class Document{
       return $this->generateTitle();
    }
    
+   public function generateTitle(){
+      $content = $this->content;
+      $split = explode(".", $content);
+      
+      $val = "";
+      $i = 0;
+      while( strlen($val) <= 100 && isset($split[$i]) ){
+         $val = $val . $split[$i];
+         $i++;
+      }
+      
+      if( strlen($val) > 100 ){
+         return substr($val,0,95) . "...";
+      }
+      else{
+         return $val;
+      }
+   }
+   
    public function getAuthor(){
       return $this->author;  
    }
@@ -37,12 +57,8 @@ class Document{
       return $this->content;
    }
    
-   public function getUrl(){
-      return $this->url;  
-   }
-   
    public function getLink(){
-      return $this->url;
+      return $this->link;
    }
    
    public function hasAuthor(){
@@ -56,6 +72,10 @@ class Document{
    
    public function getPreview(){
       return $this->content;
+   }
+   
+   public function getDate(){
+      return $this->date;
    }
    
    // Setters
