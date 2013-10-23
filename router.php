@@ -66,6 +66,24 @@ if( $_SERVER['PATH_INFO'] == NULL ){
    
       render( "searchengine/site/results.php", $display );
    }
+   else if( isset( $_GET['timeline'] ) ){
+   
+      $query = new ElasticsearchQuery();
+      $data  = $query->search( $_GET['timeline'], $source, 0, 50 );
+      
+      $resultlist =  new ResultList();
+      foreach( $data->hits->hits as $data ){
+         $resultlist->add(
+               new Document(
+                  $data->_id, $data->_source->title, NULL, 
+                 $data->_source->link, $data->highlight->text[0],
+                 $data->_source->date
+               )
+            );
+      }
+   
+      render( "searchengine/site/timeline.php", array( "q" => $_GET['timeline'], "resultset" => $resultlist ));
+   }
    else{
       render( "searchengine/site/index.php" );
    }

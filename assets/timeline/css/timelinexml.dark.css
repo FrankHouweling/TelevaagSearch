@@ -1,0 +1,22 @@
+.timeline-wrap { position: relative; width: 100%; border-radius: 8px; height: 7px; border: 1px solid rgba(0,0,0,0.2); border-bottom: 1px solid rgba(255,255,255,0.07); font: 11px/18px 'lucida grande', helvetica, tahoma, sans-serif; color:  }
+.timeline-years { position: absolute; width: 100%; }
+.timeline-months { position: absolute; width: 100%; }
+.timeline-dateblock { white-space: nowrap; position: absolute; width: 100px; left: 0; top: -48px; margin-left: -50px; text-align: center; color: #757575; text-shadow: 0 1px 0 #1a1a1a; }
+.timeline-year:before { position: absolute; display: block; content: ""; left: 50px; top: 8px; width: 2px; height: 88px; background: url('../img/sprite_dark.png') 0 0; }
+.timeline-month { color: #444; text-shadow: none; }
+.timeline-month:before { position: absolute; display: block; content: ""; left: 50px; top: 27px; width: 1px; height: 48px; background: url('../img/sprite_dark.png') -2px 0; }
+.timeline-event { position: absolute; z-index: 99999; left: 0; }
+.timeline-event-node { position: absolute; z-index: 99999; left: 0; top: -5px; width: 19px; height: 18px; background: url('../img/sprite_dark.png') -3px -21px; cursor: pointer; }
+.timeline-event-contents { margin-left: -20px; padding: 0 12px; position: absolute; left: 0; top: 30px;  z-index: 98; overflow: visible !important; }
+.timeline-event-content { display: none; background: rgba(0,0,0,0.75); border: 1px solid rgba(0,0,0,0.25); margin-left: 4px; margin-top: -2px; box-shadow: 0 0 4px rgba(0,0,0,0.2); padding: 15px 15px 45px 15px; font: 12px/18px 'lucida grande', 'lucida sans', helvetica, tahoma, sans-serif; color: white; border-radius: 0 0 6px 6px; }
+.timeline-event-title { white-space: nowrap; position: relative; display: block; height: 41px; padding: 0 20px; background: url('../img/sprite_dark.png') -80px 0; font: bold 12px/41px 'lucida grande', 'lucida sans', helvetica, tahoma, sans-serif; text-transform: uppercase; color: white; text-shadow: 0 1px 2px #a02418; }
+.timeline-event-title:after { position: absolute; display: block; content: ""; right: -7px; top: 0; width: 7px; height: 41px; background: url('../img/sprite_dark.png') right 0; }
+.timeline-event-title span { font-size: 10px; margin-right: 10px; }
+.timeline-event-arrow { position: absolute; display: none; left: 0; top: 21px; width: 17px; height: 11px; background: url('../img/sprite_dark.png') -41px -21px; z-index: 100; }
+.timeline-event-link { position: absolute; right: 30px; bottom: 15px; width: 77px; height: 21px; background: url('../img/sprite_dark.png') -3px 0; text-align: center; display: none; }
+.timeline-event-link a { font: bold 10px/21px 'lucida grande', 'lucida sans', helvetica, tahoma, sans-serif; color: white; text-shadow: 0 1px 2px #a02418; text-decoration: none; }
+
+.timeline-event.timeline-above .timeline-event-contents { top: -100px; }
+.timeline-event.timeline-above .timeline-event-arrow { background-position: -41px -32px; top: auto; bottom: 50px; }
+
+.timeline-event-content img { float: left; margin: 0 10px 10px 0; width: 100px; height: 100px; }
