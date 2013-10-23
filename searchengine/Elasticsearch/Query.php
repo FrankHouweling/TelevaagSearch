@@ -14,11 +14,7 @@ class ElasticsearchQuery{
       return $return;
    }
    
-<<<<<<< HEAD
-   function search( $query, $dataType = "" ){
-=======
    function search( $query, $dataType = "", $van = 0, $tot = false ){
->>>>>>> 110ba0b76accf0417a9281d16ed0f7fc3cbf84fd
       $con = ElasticsearchConnection::getInstance();
       
       if( $dataType !== "" )
@@ -30,10 +26,7 @@ class ElasticsearchQuery{
       
       $return = $con->send( "GET",  $dataType . "_search", NULL, 
         '{
-<<<<<<< HEAD
-=======
            "from" : ' . $van . ', "size" : ' . $tot . ',
->>>>>>> 110ba0b76accf0417a9281d16ed0f7fc3cbf84fd
            "query": {
                  "query_string": {
                      "query": "' . $query . '"
