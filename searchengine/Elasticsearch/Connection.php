@@ -23,6 +23,10 @@ class ElasticsearchConnection{
    
    private function restRequest($method,$uri,$query=NULL,$json=NULL,$options=NULL){
       
+     if( $query == "?" ){
+        $query = "";
+     }
+      
      // Compose querry
      $options = array(
        CURLOPT_URL => "http://86.93.138.176:9200/zoekmachine/".$uri.$query,
@@ -31,10 +35,13 @@ class ElasticsearchConnection{
        CURLOPT_RETURNTRANSFER => true
      ); 
      
+     //exit;
+     
      curl_setopt_array($this->curl, $options);
    
      // send request and wait for responce
      $response = curl_exec($this->curl);
+     
      $returnAr =  json_decode($response,false);
      
      return $returnAr;

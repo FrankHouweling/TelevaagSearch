@@ -1,5 +1,6 @@
 install/Telegraaf/Data/*
 install/Telegraaf/Splitter/*
+install/Kamervragen/Data/*
 
 /.buildpath
 /build/
