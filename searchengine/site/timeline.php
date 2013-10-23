@@ -54,9 +54,8 @@
 				  <div class="timeline-event">
 						<div class="timeline-date"><?=date("d.m.Y",strtotime($result->getDate()))?></div>
 						<div class="timeline-title"><?=$result->getTitle()?></div>
-						<div class="timeline-thumb">img/sample_images/1.jpg</div>
 						<div class="timeline-content"><?=$result->getPreview()?></div>
-						<div class="timeline-link"><a href="http://localhost:8888/?p=36">Read More</a></div>
+						<div class="timeline-link"><a href="<?=$result->getLink()?>">Lees verder</a></div>
 					</div>
 				  <?php
 				  endforeach;
