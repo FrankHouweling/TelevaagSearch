@@ -41,10 +41,13 @@ class TelegraafImporter implements Importer{
       foreach( $document->getElementsByTagName("root") as $element ){
          $text = $element->getElementsByTagName("text");
          $title = $element->getElementsByTagName('title');
+         $link = $element->getElementsByTagName('content')->item(0)->getAttribute("source");
+         $date = $element->getElementsByTagName('date')->item(0)->nodeValue;
          
+         $data = array( "text" => $text->item(0)->nodeValue, "title" => $title->item(0)->nodeValue, "link" => $link, "date" => $date);
          
          $q = new ElasticsearchQuery();
-         $q->insert( "telegraafarticle", json_encode(array( "text" => $text->item(0)->nodeValue, "title" => $title->item(0)->nodeValue)) );
+         $q->insert( "telegraafarticle", json_encode($data) );
       }
       
    }
