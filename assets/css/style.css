@@ -13,6 +13,9 @@
 	font-family: arial, sans-serif;
 	width: 800px;
 }
+.results:nth-child(even){
+   background-color:#f7f7f7;
+}
 .results .result a {
 	color: #1E0FBE;
 	display: block;
@@ -25,6 +28,16 @@
 .results .result .url {
 	color: #006621;
 	font-size: 12px;
+}
+.results .result .date{
+   font-size:12px;
+   color:#555;
+}
+.results .result .date:before{
+   content: '(';
+}
+.results .result .date:after{
+   content: ')';
 }
 .results .result p {
 	color: #444;
