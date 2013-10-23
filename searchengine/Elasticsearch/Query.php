@@ -16,8 +16,13 @@ class ElasticsearchQuery{
    
    function search( $query, $dataType = false ){
       $con = ElasticsearchConnection::getInstance();
-      $return = $con->send( "GET", "_search", array( "q=" . $query ), 
+      $return = $con->send( "GET", "_search", NULL, 
         '{
+           "query": {
+                 "query_string": {
+                     "query": "' . $query . '"
+                 }
+             },
              "highlight" : {
                  "fields" : {
                      "text" : {"fragment_size" : 150, "number_of_fragments" : 3}

@@ -39,7 +39,17 @@
 		<div class="results">
 			<div class="result">
 				<a href="<?=$result->getLink()?>"><?=$result->getTitle()?></a>
-				<span class="url"><?=$result->getLink()?></span>
+				<span class="url">
+				 <?php 
+				  if( strpos($result->getLink(), "kranten.kb.nl" ) ){
+   				  echo "Telegraaf - ";
+				  }
+				  else{
+   				  echo "Kamervragen - ";
+				  }
+				 ?>
+				  <?=$result->getLink()?>
+				  </span>
 				<?php if($result->hasAuthor()): ?>
 				<span class="author">
 				  <a href="?author=<?=$result->getAuthor()?>"><?=$result->getAuthor()?></a>

@@ -58,7 +58,13 @@ class Document{
    }
    
    public function getLink(){
-      return $this->link;
+      if( strpos($this->link, "geencommentaar.nl") ){
+         $split = explode( "&filename=", $this->link );
+         return "http://www.polidocs.nl/XML/KVR/" . $split[1] . ".xml";
+      }
+      else{
+         return $this->link;
+      }
    }
    
    public function hasAuthor(){
