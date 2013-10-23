@@ -14,7 +14,7 @@ class ElasticsearchQuery{
       return $return;
    }
    
-   function search( $query, $dataType = "", $van = 0 ){
+   function search( $query, $dataType = "" ){
       $con = ElasticsearchConnection::getInstance();
       
       if( $dataType !== "" )
@@ -22,7 +22,6 @@ class ElasticsearchQuery{
       
       $return = $con->send( "GET",  $dataType . "_search", NULL, 
         '{
-           "from" : ' . $van . ', "size" : ' . ( $van+20 ) . ',
            "query": {
                  "query_string": {
                      "query": "' . $query . '"

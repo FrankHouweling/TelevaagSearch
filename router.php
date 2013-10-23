@@ -33,21 +33,12 @@ if( $_SERVER['PATH_INFO'] == NULL ){
          $source = $_GET['source'];
       }
       
-      if( isset( $_GET['p'] ) ){
-         $begin = ($_GET['p']-1)*20;   // Pagina 1 = beginnen bij 0, p. 2 = beginnen bij 20 etc.
-         $p = $_GET['p'];
-      }
-      else{
-         $begin = 0;
-         $p = 1;
-      }
-      
-      $data  = $query->search( $_GET['q'], $source, $begin );
+      $data  = $query->search( $_GET['q'], $source );
       $display = array();
       $display['result_total_num'] = $data->hits->total;
       $display['processing_time'] = $data->tooktime;
       
-      $display['page_num'] = $p;
+      $display['page_num'] = 1;
       
       // Moving this to a seperate function would be better.. but for now i'm lazy
       
