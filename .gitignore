@@ -1,4 +1,5 @@
 install/Telegraaf/Data/*
+install/Telegraaf/Splitter/*
 
 /.buildpath
 /build/
