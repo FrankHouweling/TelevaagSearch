@@ -122,6 +122,9 @@
 .navbar-form{
    margin:15px;
 }
+#my-timeline{
+   margin-top:50px;
+}
 .advanced-search table {
 	width: 800px;
 }

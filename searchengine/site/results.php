@@ -13,7 +13,7 @@
 		</a>
 		<form class="navbar-form navbar-left" role="search">
          <div class="form-group">
-           <input type="text" class="form-control" value="<?=$_GET['q']?>">
+           <input type="text" class="form-control" value="<?=$_GET['q']?>" name="q">
          </div>
          <button type="submit" class="btn btn-default">Search</button>
        </form>
@@ -53,6 +53,14 @@
 			      }
 			   ?>
 				><a href="?q=<?=$_GET['q']?>&source=telegraafarticle">Telegraaf</a></li>
+				<li class="<?php
+				if( isset( $_GET['timeline'] ) ){
+				  echo "selected";
+				}
+				 ?>
+				 blue">
+   				<a href="?timeline=<?=$_GET['q']?>">Timeline&#8482;</a>
+				</li>
 				<li class="right">
 					<button type="button" class="btn btn-default">
 						<span class="glyphicon glyphicon-cog"></span>

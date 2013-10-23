@@ -1,0 +1,24 @@
+.timeline-wrap { position: relative; width: 100%; height: 13px; font: 11px/18px 'lucida grande', helvetica, tahoma, sans-serif; color:  }
+.timeline-wrap:before { display: block; content: ""; position: absolute; left: -6px; top: 0; width: 51%; height: 13px; background: url('../img/sprite_sleek.png') -79px -31px; }
+.timeline-wrap:after { display: block; content: ""; position: absolute; right: -5px; top: 0; width: 51%; height: 13px; background: url('../img/sprite_sleek.png') right -31px; }
+.timeline-years { position: absolute; width: 100%; }
+.timeline-months { position: absolute; width: 100%; }
+.timeline-dateblock { white-space: nowrap; position: absolute; left: 0; top: -32px; margin-left: -50px; width: 100px; text-align: center; color: #696969; }
+.timeline-year:before { position: absolute; display: block; content: ""; left: 50px; top: 23px; width: 1px; height: 29px; background: url('../img/sprite_sleek.png') 0 0; }
+.timeline-month { color: #acacac; text-shadow: none; }
+.timeline-month:before { position: absolute; display: block; content: ""; left: 50px; top: 27px; width: 1px; height: 23px; background: url('../img/sprite_sleek.png') -1px 0; }
+.timeline-event { position: absolute; z-index: 99999; left: 0; }
+.timeline-event-node { position: absolute; z-index: 99999; left: 0; top: 1px; width: 9px; height: 9px; background: url('../img/sprite_sleek.png') -2px -20px; cursor: pointer; }
+.timeline-event-contents { margin-left: -20px; padding: 0 12px; position: absolute; left: 0; top: 30px;  z-index: 98; overflow: visible !important; }
+.timeline-event-content { display: none; background: rgba(0,0,0,0.75); border: 1px solid rgba(0,0,0,0.25); margin-left: 8px; margin-top: -4px; box-shadow: 0 0 4px rgba(0,0,0,0.2); padding: 15px 15px 45px 15px; font: 12px/18px 'lucida grande', 'lucida sans', helvetica, tahoma, sans-serif; color: white; border-radius: 0 0 6px 6px; }
+.timeline-event-title { white-space: nowrap; position: relative; display: block; height: 31px; padding: 0 20px; background: url('../img/sprite_sleek.png') -78px 0; font: bold 12px/31px 'lucida grande', 'lucida sans', helvetica, tahoma, sans-serif; text-transform: uppercase; color: #3d3d3d; }
+.timeline-event-title:after { position: absolute; display: block; content: ""; right: -7px; top: 0; width: 7px; height: 31px; background: url('../img/sprite_sleek.png') right 0; }
+.timeline-event-title span { font-size: 10px; margin-right: 10px; }
+.timeline-event-arrow { position: absolute; display: none; left: -5px; top: 22px; width: 20px; height: 10px; background: url('../img/sprite_sleek.png') -11px -20px; z-index: 100; }
+.timeline-event-link { position: absolute; right: 30px; bottom: 15px; width: 75px; height: 20px; background: url('../img/sprite_sleek.png') -3px 0; text-align: center; display: none; }
+.timeline-event-link a { font: bold 10px/20px 'lucida grande', 'lucida sans', helvetica, tahoma, sans-serif; color: #3d3d3d; text-decoration: none; }
+
+.timeline-event.timeline-above .timeline-event-contents { top: -70px; }
+.timeline-event.timeline-above .timeline-event-arrow { background-position: -11px -30px; top: auto; bottom: 32px; height: 11px; }
+
+.timeline-event-content img { float: left; margin: 0 10px 10px 0; width: 100px; height: 100px; }
