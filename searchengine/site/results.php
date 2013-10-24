@@ -64,9 +64,11 @@
    				<a href="?q=<?=$_GET['q']?>&persons">Persons</a>
 				</li>
 				<li class="right">
-					<button type="button" class="btn btn-default">
-						<span class="glyphicon glyphicon-cog"></span>
-					</button>
+					<a href="advanced.php">
+   					<button type="button" class="btn btn-default">
+   						<span class="glyphicon glyphicon-cog"></span>
+   					</button>
+					</a>
 				</li>
 			</ul>
 			<div class="clear"></div>

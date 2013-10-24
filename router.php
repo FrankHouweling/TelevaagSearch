@@ -164,7 +164,7 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
          
       }
       
-      foreach( array("aan", "de", "over", "het", "een", "en", "van", "met", "in", "of", "per", "voor", "is", "te", "dat", "op", "zijn", "niet", "die", "u", "door", "om", "ook", "er", "bij", "dit", "hij", "zij", "tot", "al", "ik", "heeft", "geen", "niet", "mijn", "De", "als", "hun", "hen", "Een", "Het", "naar", "ja", "nee", "was", "In", "in", "dan", "had", "uit", "gaan", "tegen", "zou", "daar", "Dat", "via", "zal", "hebben", "waarmee") as $stopwoord ){
+      foreach( array("aan", "de", "over", "het", "een", "en", "van", "met", "in", "of", "per", "voor", "is", "te", "dat", "op", "zijn", "niet", "die", "u", "door", "om", "ook", "er", "bij", "dit", "hij", "zij", "tot", "al", "ik", "heeft", "geen", "niet", "mijn", "De", "als", "hun", "hen", "Een", "Het", "naar", "ja", "nee", "was", "In", "in", "dan", "had", "uit", "gaan", "tegen", "zou", "daar", "Dat", "via", "zal", "hebben", "waarmee", "worden", "wordt", "deze", "nog", "onze", "ons", "Van", "nu") as $stopwoord ){
          unset($wordset[$stopwoord]);
       }
       

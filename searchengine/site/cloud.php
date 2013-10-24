@@ -15,7 +15,7 @@
   <script type="text/javascript">
       var word_list = new Array(
         <?php foreach( $topwords as $word => $count ): ?>
-        {text: "<?=$word?>", weight: <?=$count?>},
+        {text: "<?=$word?>", weight: <?=$count?>, link: '?cloud=<?=$word?>'},
         <?php endforeach; ?>
         {text: "", weight: 0}
       );
@@ -58,9 +58,11 @@
 				  <a href="?q=<?=$q?>&persons">Persons</a>
 				</li>
 				<li class="right">
-					<button type="button" class="btn btn-default">
-						<span class="glyphicon glyphicon-cog"></span>
-					</button>
+					<a href="advanced.php">
+   					<button type="button" class="btn btn-default">
+   						<span class="glyphicon glyphicon-cog"></span>
+   					</button>
+					</a>
 				</li>
 			</ul>
 			<div class="clear"></div>
