@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "searchengine/Elasticsearch/Query.php";
 require_once "searchengine/ResultList.php";
 require_once "searchengine/Document.php";
@@ -81,6 +81,37 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
       $display['resultset'] = $resultlist;
    
       render( "searchengine/site/results.php", $display );
+   }
+   else if( isset( $_GET['advanced'] ) ){
+   	
+   		$search_array = $_SESSION[$_GET['advanced']]['query'];
+
+   		$query = new ElasticsearchQuery();
+   		$data = $query->advanced($search_array, $_SESSION[$_GET['advanced']]['source']);
+   		
+	      $display = array();
+	      $display['result_total_num'] = $data->hits->total;
+	      $display['processing_time'] = $data->tooktime;
+	      
+	      $display['page_num'] = 1;
+	      
+	      // Moving this to a seperate function would be better.. but for now i'm lazy
+	      
+	      $resultlist =  new ResultList();
+	      foreach( $data->hits->hits as $data ){
+	         $resultlist->add(
+	               new Document(
+	                  $data->_id, $data->_source->title, NULL, 
+	                 $data->_source->link, $data->highlight->text[0],
+	                 $data->_source->date, $data->_source->text
+	               )
+	            );
+	      }
+	      
+	      $display['resultset'] = $resultlist;
+	   
+	      render( "searchengine/site/results.php", $display );
+	      
    }
    else if( isset( $_GET['timeline'] ) ){
    

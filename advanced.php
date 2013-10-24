@@ -1,9 +1,8 @@
 <?php
+session_start();
 $values = $_GET;
 if(isset($values['all'])) {
 	$search_array = array(
-		'query' => array(
-		),
 		'highlight' => array(
 			'fields' => array(
 				'text' => array(
@@ -14,51 +13,93 @@ if(isset($values['all'])) {
 		)
 	);
 	
+	$source = "";
 	if(isset($values['type']) && !empty($values['type']) && $values['type'] != 'both') {
-		$search_array['index'] = $values['type'];
+		$source = $values['type'];
 	}
-	
+	$search_array['query']['bool']['must'] = array();
 	if(isset($values['all']) && !empty($values['all'])) {
-		$search_array['query']['match_all'] = $values['all'];
+		#$search_array['query']['match_all'] = $values['all'];
+		#$search_array['bool']['must'] = array(array('match' => array('text' => $values['all'])));
+		$search_array['query']['bool']['must'][] = array(
+			'query_string' => array(
+				'default_field' => "_all",
+				'query' =>  $values['all']
+			)
+		);
 	}
 	if(isset($values['exact']) && !empty($values['exact'])) {
-		$search_array['query']['match_phrase'] = array( "text" => $values['exact'] );
+		#$search_array['filter']['match_phrase'] = array( "text" => array("query" => $values['exact'] ));
+		$search_array['query']['bool']['must'][] = array(
+			'text' => array(
+				'text' =>   $values['exact']
+			)
+		);
 	}
-	if(isset($values['any']) && !empty($values['any'])) {
+	/*if(isset($values['any']) && !empty($values['any'])) {
 		$search_array['query']['match']["text"] = array(
 			'query' => explode(" ", $values['any']),
 			'operator' => 'or'
 		);
 	}
+	*/
 	if(!empty($values['from_date']) || !empty($values['to_date'])) {
 		
-		$search_array['query']['range']["date"] = array();
+		$range['range']["date"] = array();
 		
 		if(!empty($values['from_date'])) {
-			$search_array['query']['range']["date"]['gte'] = $values['from_date'];
+			$range['range']["date"]['gte'] = $values['from_date'];
 		}
 		
-		if(!empty($values['from_date'])) {
-			$search_array['query']['range']["date"]['lte'] = $values['to_date'];
+		if(!empty($values['to_date'])) {
+			$range['range']["date"]['lte'] = $values['to_date'];
 		}
+		$search_array['query']['bool']['must'][] = $range;
 		
 	}
 	if(isset($values['title']) && !empty($values['title'])) {
-		$search_array['query']['match']["title"] = $values['title'];
+		$search_array['query']['bool']['must'][] = array(
+			'query_string' => array(
+				'default_field' => "title",
+				'query' =>  $values['title']
+			)
+		);
 	}
 	if(isset($values['persons']) && !empty($values['persons'])) {
-		$search_array['query']['match']["persons"] = array(
-			'query' => explode(",", $values['persons']),
+		$search_array['query']['bool']['must'][] = array(
+			'query_string' => array(
+				'default_field' => "persons",
+				'query' =>  $values['persons']
+			)
 		);
 	}
 	if(isset($values['questions']) && !empty($values['questions'])) {
-		$search_array['query']['match']["questions"] = $values['questions'];
+		$search_array['query']['bool']['must'][] = array(
+			'query_string' => array(
+				'default_field' => "questions",
+				'query' =>  $values['questions']
+			)
+		);
 	}
 	if(isset($values['answers']) && !empty($values['answers'])) {
-		$search_array['query']['match']["answers"] = $values['answers'];
+		$search_array['query']['bool']['must'][] = array(
+			'query_string' => array(
+				'default_field' => "answers",
+				'query' =>  $values['answers']
+			)
+		);
 	}
-	#echo json_encode($search_array);
-	echo "<pre>" . print_r($search_array, true). "</pre>";
+	$code = md5(json_encode($search_array));
+	$_SESSION[$code] = array(
+		'query' => $search_array,
+		'source' => $source,
+		'hash' => $values
+	);
+	header("Location: ./?advanced=" . $code);
+	exit;
+}
+if(isset($_GET['hash'])) {
+	$values = $_SESSION[$_GET['hash']]['hash'];
 }
 ?>
 <!DOCTYPE html>
@@ -115,10 +156,10 @@ if(isset($values['all'])) {
 					<td>all these words:</td><td><input type="text" name="all" value="<?=$values['all']?>" /></td>
 				</tr>
 				<tr>
-					<td>this exact word or phrase:</td><td><input type="text" name="exact" value="<?=$values['exact']?>" /></td>
+					<td>[NEEDS FIX] this exact word or phrase:</td><td><input type="text" name="exact" value="<?=$values['exact']?>" /></td>
 				</tr>
 				<tr>
-					<td>any of these words:</td><td><input type="text" name="any" value="<?=$values['any']?>" /></td>
+					<td>[DOESNT WORK] any of these words:</td><td><input type="text" name="any" value="<?=$values['any']?>" /></td>
 				</tr>
 				<tr>
 					<td>none of these words:</td><td><input type="text" name="none" value="<?=$values['none']?>" /></td>
@@ -142,7 +183,7 @@ if(isset($values['all'])) {
 					<td>from date:</td><td><input type="text" class="date" name="from_date" value="<?=$values['from_date']?>" /> to: <input type="text" class="date" name="to_date" value="<?=$values['to_date']?>" /></td>
 				</tr>
 				<tr>
-					<td>type:</td><td>
+					<td>[DOESNT WORK] type:</td><td>
 						<label><input type="radio" name="type" value="both" checked="true"> Both</label>
 						<label><input type="radio" name="type" value="kamervraag"> Kamervraag</label>
 						<label><input type="radio" name="type" value="telegraafarticle"> Telegraaf article</label>

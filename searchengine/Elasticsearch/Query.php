@@ -14,6 +14,16 @@ class ElasticsearchQuery{
       return $return;
    }
    
+   function advanced( $raw , $dataType ){
+   	$con = ElasticsearchConnection::getInstance();
+
+      if( $dataType !== "" )
+         $dataType = $dataType . "/";
+         
+    $return = $con->send( "GET",  $dataType . "_search", NULL, json_encode($raw));
+         
+    return $return;
+   }
    function search( $query, $dataType = "", $van = 0, $tot = false ){
       $con = ElasticsearchConnection::getInstance();
       

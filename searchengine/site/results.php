@@ -64,7 +64,7 @@
    				<a href="?q=<?=$_GET['q']?>&persons">Persons</a>
 				</li>
 				<li class="right">
-					<button type="button" class="btn btn-default">
+					<button type="button" class="btn btn-default" onclick="window.location = 'advanced.php<?=((isset($_GET['advanced'])) ? "?hash=".$_GET['advanced'] : "")?>';">
 						<span class="glyphicon glyphicon-cog"></span>
 					</button>
 				</li>
