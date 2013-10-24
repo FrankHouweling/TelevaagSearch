@@ -28,7 +28,7 @@ if(isset($values['all'])) {
 			)
 		);
 	}
-	if(isset($values['exact']) && !empty($values['exact'])) {
+	/*if(isset($values['exact']) && !empty($values['exact'])) {
 		#$search_array['filter']['match_phrase'] = array( "text" => array("query" => $values['exact'] ));
 		$search_array['query']['bool']['must'][] = array(
 			'text' => array(
@@ -36,7 +36,7 @@ if(isset($values['all'])) {
 			)
 		);
 	}
-	/*if(isset($values['any']) && !empty($values['any'])) {
+	if(isset($values['any']) && !empty($values['any'])) {
 		$search_array['query']['match']["text"] = array(
 			'query' => explode(" ", $values['any']),
 			'operator' => 'or'
@@ -154,12 +154,6 @@ if(isset($_GET['hash'])) {
 				</tr>
 				<tr>
 					<td>all these words:</td><td><input type="text" name="all" value="<?=$values['all']?>" /></td>
-				</tr>
-				<tr>
-					<td>[NEEDS FIX] this exact word or phrase:</td><td><input type="text" name="exact" value="<?=$values['exact']?>" /></td>
-				</tr>
-				<tr>
-					<td>[DOESNT WORK] any of these words:</td><td><input type="text" name="any" value="<?=$values['any']?>" /></td>
 				</tr>
 				<tr>
 					<td>none of these words:</td><td><input type="text" name="none" value="<?=$values['none']?>" /></td>

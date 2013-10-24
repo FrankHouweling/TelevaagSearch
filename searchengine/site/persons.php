@@ -9,35 +9,6 @@
   
   <script lang="javascript" type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   
-  
-  <!-- Pie chart -->
-  
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Partij', 'Aantal documenten'],
-          <?php
-            foreach( $partijen as $partij => $doc ){
-               ?>
-               ["<?=$partij?>", <?=$doc?>],
-               <?
-            }
-          ?>
-          ['',    0]
-        ]);
-
-        var options = {
-          title: 'Politieke Partijen en \'<?=$q?>\''
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-      }
-    </script>
-  
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -82,7 +53,6 @@
 			<div class="clear"></div>
 		</div>
 	<div class="container">
-	 <div id="piechart" style="width: 100%; height: 240px;"></div>
 	  <h3>Important players:</h3>
 	  <p>The following people are identified as important political players on this topic.</p>
 	  <ul class="personlist">
