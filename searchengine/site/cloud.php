@@ -32,7 +32,7 @@
 		</a>
 		<form class="navbar-form navbar-left" role="search">
          <div class="form-group">
-           <input type="text" class="form-control" value="<?=$_GET['q']?>" name="q">
+           <input type="text" class="form-control" value="<?=$q?>" name="q">
          </div>
          <button type="submit" class="btn btn-default">Search</button>
        </form>

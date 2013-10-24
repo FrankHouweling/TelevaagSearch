@@ -48,7 +48,7 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
                new Document(
                   $data->_id, $data->_source->title, NULL, 
                  $data->_source->link, $data->highlight->text[0],
-                 $data->_source->date
+                 $data->_source->date, $data->_source->text
                )
             );
       }
@@ -68,24 +68,28 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
                new Document(
                   $data->_id, $data->_source->title, NULL, 
                  $data->_source->link, $data->highlight->text[0],
-                 $data->_source->date
+                 $data->_source->date, $data->_source->text
                )
             );
       }
    
       render( "searchengine/site/timeline.php", array( "q" => $_GET['timeline'], "resultset" => $resultlist ));
    }
-   else if( isset( $_GET['cloud'] ) ){
+   else if( isset( $_GET['cloud'] ) OR isset( $_GET['doccloud'] ) ){
    
       function rmsymbols( $word ){
-         foreach( array("(", ")", "'", ";", ".", ",", "\"", "\\") as $s ){
+         foreach( array("(", ")", "'", ";", ".", ",", "\"", "\\", "\n", "\r") as $s ){
             $word = str_replace($s, "", $word);
          }
          return $word;
       }
    
       $query = new ElasticsearchQuery();
-      $data  = $query->search( $_GET['cloud'], "", 0, 100 );
+      
+      if( isset( $_GET['cloud'] ) )
+         $data  = $query->search( $_GET['cloud'], "", 0, 100 );
+      else
+         $data = $query->id( $_GET['doccloud'] );
       
       $resultlist =  new ResultList();
       foreach( $data->hits->hits as $data ){
@@ -93,7 +97,7 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
                new Document(
                   $data->_id, $data->_source->title, NULL, 
                  $data->_source->link, $data->highlight->text[0],
-                 $data->_source->date
+                 $data->_source->date, $data->_source->text
                )
             );
       }
@@ -101,8 +105,10 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
       $wordset = array();
       
       foreach( $resultlist as $result ){
+      
          // First do content stuff.
-         $content = $result->getContent();
+         $content = $result->getFullText();
+         
          $splode = explode(" ", $content);
          foreach( $splode as $word ){
             

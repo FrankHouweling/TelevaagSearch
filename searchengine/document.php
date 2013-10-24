@@ -9,13 +9,14 @@
 class Document{
    private $id, $title, $author, $link, $date;
    
-   public function __construct( $docId, $docTitle, $docAuthor, $docUrl, $docContent, $date ){
+   public function __construct( $docId, $docTitle, $docAuthor, $docUrl, $docContent, $date, $fullText ){
       $this->id = $docId;
       $this->title = $docTitle;
       $this->author = $docAuthor;
       $this->link = $docUrl;
       $this->content = $docContent;
       $this->date = $date;
+      $this->fulltext = $fullText;
    }
    
    // Getters
@@ -55,6 +56,10 @@ class Document{
    
    public function getContent(){
       return $this->content;
+   }
+   
+   public function getFullText(){
+      return $this->fulltext;
    }
    
    public function getLink(){

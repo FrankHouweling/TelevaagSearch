@@ -42,6 +42,17 @@ class ElasticsearchQuery{
       return $return;
    }
    
+   function id( $givenId ){
+      $con = ElasticsearchConnection::getInstance();
+      
+      if( $dataType !== "" )
+         $dataType = $dataType . "/";
+         
+      $return = $con->send( "GET",  $dataType . "_search", array("q=_id:" . $givenId) );
+      
+      return $return;
+   }
+   
 }
 
 ?>
