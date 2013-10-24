@@ -9,7 +9,7 @@ class ImportDirNotWritableException extends Exception{}
 
 class TelegraafImporter implements Importer{
 
-   public function runImport($dataSrc = "Telegraaf/Data/1988/4/"){
+   public function runImport($dataSrc = "Telegraaf/Data/1988/9/"){
       $handle = opendir($dataSrc);
       if (!$handle) {
          throw new ImportDirNotWritableException();

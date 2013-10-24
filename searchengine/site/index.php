@@ -22,7 +22,7 @@
 		<div class="floater">
 			<img src="assets/img/Marxgle.gif" />
 			<form action="./">
-				<input type="text" class="form-control" name="q" placeholder="e.g. Das Kapital" /><br/>
+				<input type="text" class="form-control" name="q" placeholder="e.g. Das Kapital" autocomplete="off" /><br/>
 				<button type="submit" class="btn btn-default">Marxgle Search</button>
 				<button type="submit" name="gelukkig" value="true" class="btn btn-default">I'm feeling gelukkig</button>
 			</form>

@@ -32,7 +32,7 @@
 		</a>
 		<form class="navbar-form navbar-left" role="search">
          <div class="form-group">
-           <input type="text" class="form-control" value="<?=$q?>" name="q">
+           <input type="text" class="form-control" value="<?=$q?>" autocomplete="off" name="q">
          </div>
          <button type="submit" class="btn btn-default">Search</button>
        </form>
