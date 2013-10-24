@@ -25,6 +25,67 @@
 		</ul>
 		</div>
 	</nav>
+		
+		<?
+		if(!empty($_GET['advanced'])) { ?>
+		<div class="filter">
+			<ul>
+			   <li class="selected"><a href="#">Advanced search</a></li>
+			<!--
+			   <li
+			   <?php
+			      if( !isset($_GET['source']) ){
+			         ?>
+			         class="selected"
+			         <?
+			      }
+			   ?>
+			   ><a href="?advanced=<?=$_GET['advanced']?>">All sources</a></li>
+				<li
+				<?php
+			      if( $_GET['source'] == "kamervraag" ){
+			         ?>
+			         class="selected"
+			         <?
+			      }
+			   ?>
+			   ><a href="?advanced=<?=$_GET['advanced']?>&source=kamervraag">Kamervragen</a></li>
+				<li
+				<?php
+			      if( $_GET['source'] == "kamervraag-bm25" ){
+			         ?>
+			         class="selected"
+			         <?
+			      }
+			   ?>
+				><a href="?advanced=<?=$_GET['advanced']?>&source=kamervraag-bm25"><i>Kamervragen (BM25)</i></a></li>
+				<li
+				<?php
+			      if( $_GET['source'] == "telegraafarticle" ){
+			         ?>
+			         class="selected"
+			         <?
+			      }
+			   ?>
+				><a href="?advanced=<?=$_GET['advanced']?>&source=telegraafarticle">Telegraaf</a></li>
+				<li class="blue">
+   				<a href="?timeline_advanced=<?=$_GET['advanced']?>">Timeline</a>
+				</li>
+				<li class="blue">
+   				<a href="?cloud_advanced=<?=$_GET['advanced']?>">WordCloud</a>
+				</li>
+				<li class="blue">
+   				<a href="?persons_advanced=<?=$_GET['advanced']?>">Persons</a>
+				</li>-->
+				<li class="right">
+					<button type="button" class="btn btn-default" onclick="window.location = 'advanced.php<?=((isset($_GET['advanced'])) ? "?hash=".$_GET['advanced'] : "")?>';">
+						<span class="glyphicon glyphicon-cog"></span>
+					</button>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<? } else { ?>
 		<div class="filter">
 			<ul>
 			   <li
@@ -80,6 +141,7 @@
 			</ul>
 			<div class="clear"></div>
 		</div>
+		<? } ?>
 	<div class="container">
 		<div class="info">
 			Page <?=$page_num?> of about <?=$result_total_num?> results (<?=$processing_time?> seconds)

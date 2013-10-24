@@ -168,10 +168,16 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
 	      render( "searchengine/site/results.php", $display );
 	      
    }
-   else if( isset( $_GET['timeline'] ) ){
+   else if( isset( $_GET['timeline'] ) || isset( $_GET['timeline_advanced'] ) ){
    
+   	
       $query = new ElasticsearchQuery();
-      $data  = $query->search( $_GET['timeline'], "", 0, 40 );
+      
+      if(isset($_GET['timeline'])) {
+		  $data  = $query->search( $_GET['timeline'], "", 0, 40 );
+      } else if(isset($_GET['timeline_advanced'])) {
+		  $data = $query->advanced($search_array, $_SESSION[$_GET['timeline_advanced']]['source']);
+      }
       
       $resultlist =  new ResultList();
       foreach( $data->hits->hits as $data ){
@@ -184,9 +190,14 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
             );
       }
    
-      render( "searchengine/site/timeline.php", array( "q" => $_GET['timeline'], "resultset" => $resultlist ));
+      if(isset($_GET['timeline'])) {
+		  render( "searchengine/site/timeline.php", array( "q" => $_GET['timeline'], "resultset" => $resultlist ));
+      } else if(isset($_GET['timeline_advanced'])) {
+		  render( "searchengine/site/timeline.php", array( "advanced" => $_GET['timeline_advanced'], "resultset" => $resultlist ));
+      }
+      
    }
-   else if( isset( $_GET['cloud'] ) OR isset( $_GET['doccloud'] ) ){
+   else if( isset( $_GET['cloud'] ) OR isset( $_GET['doccloud'] ) OR isset( $_GET['cloud_advanced'] ) ){
    
       function rmsymbols( $word ){
          foreach( array("(", ")", "'", ";", ".", ",", "\"", "\\", "\n", "\r") as $s ){
@@ -200,6 +211,9 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
       if( isset( $_GET['cloud'] ) ){
          $q = $_GET['cloud'];
          $data  = $query->search( $_GET['cloud'], "", 0, 100 );
+      }
+      else if(isset( $_GET['cloud_advanced'] )) {
+		  $data = $query->advanced($search_array, $_SESSION[$_GET['cloud_advanced']]['source']);
       }
       else{
          $q = $_GET['orc'];
@@ -266,8 +280,12 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
       foreach( $wordset as $word => $score ){
          $newwordset[$word] = ( (($score-$minscore)/$maxscore)*10+1 );
       }
+      if( isset( $_GET['cloud'] ) OR isset( $_GET['doccloud'] ) ) {
+	      render( "searchengine/site/cloud.php", array( "q" => $q, "topwords" => $newwordset ));
+      } else {
+	      render( "searchengine/site/cloud.php", array( "advanched" => $_GET['cloud_advanced'], "topwords" => $newwordset ));
+      }
       
-      render( "searchengine/site/cloud.php", array( "q" => $q, "topwords" => $newwordset ));
    }
    else{
       render( "searchengine/site/index.php" );
