@@ -34,7 +34,10 @@
 				<li><a href="?q=<?=$q?>&source=kamervraag">Kamervragen</a></li>
 				<li><a href="?q=<?=$q?>&source=telegraafarticle">Telegraaf</a></li>
 				<li class="selected blue">
-   				<a href="?timeline=<?=$q?>">Timeline&#8482;</a>
+   				<a href="?timeline=<?=$q?>">Timeline</a>
+				</li>
+				<li class="blue">
+   				<a href="?cloud=<?=$q?>">WordCloud</a>
 				</li>
 				<li class="right">
 					<button type="button" class="btn btn-default">
@@ -45,30 +48,56 @@
 			<div class="clear"></div>
 		</div>
 	<div class="container">
-	 <div class="demo-box">
-			<div id="my-timeline">
-				<div class="timeline-html-wrap" style="display: none">
-				  <?php
-				  foreach( $resultset as $result ):
-				  ?>
-				  <div class="timeline-event">
-						<div class="timeline-date"><?=date("d.m.Y",strtotime($result->getDate()))?></div>
-						<div class="timeline-title"><?=$result->getTitle()?></div>
-						<div class="timeline-content"><?=$result->getPreview()?></div>
-						<div class="timeline-link"><a href="<?=$result->getLink()?>">Lees verder</a></div>
-					</div>
-				  <?php
-				  endforeach;
-				  ?>
-				</div>
-				</div>
-			</div>
+   	 <div class="demo-box">
+   			<div id="my-timeline">
+   				<div class="timeline-html-wrap" style="display: none">
+   				  <?php
+   				  foreach( $resultset as $result ):
+   				  ?>
+   				  <div class="timeline-event">
+   						<div class="timeline-date"><?=date("d.m.Y",strtotime($result->getDate()))?></div>
+   						<div class="timeline-title"><?=$result->getTitle()?></div>
+   						<div class="timeline-content"><?=$result->getPreview()?></div>
+   						<div class="timeline-link"><a href="<?=$result->getLink()?>">Lees verder</a></div>
+   					</div>
+   				  <?php
+   				  endforeach;
+   				  ?>
+   				</div>
+   			</div>
+        </div>
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 			<script defer src="assets/timeline/js/plugins.js"></script>
       	<script defer src="assets/timeline/js/mylibs/timelinexml.js"></script>
       	<script defer src="assets/timeline/js/script.js"></script>
-			
-		</section>
+      	<div class="yearresults">
+      	  <?php
+      	  // Reorder...
+      	  $resultding = array();
+      	  foreach( $resultset as $result ){
+         	  $resultding[date("Y",strtotime($result->getDate()))][] = $result;
+      	  }
+      	  ?>
+      	   <?php
+   			foreach( $resultding as $jaar => $rset ):
+   			?>
+   			<h3><?=$jaar?></h3>
+   			<ul>
+   			<?php
+   			foreach( $rset as $result ):
+   			?>
+   			<li>
+   			   <span class="date"><?=date("d.m.Y",strtotime($result->getDate()))?></span>
+   			   <p><a href="<?=$result->getLink()?>"><?=$result->getTitle()?></a></p>
+   			</li>
+   			<?php
+   			endforeach;
+   			?>
+   			</ul>
+   			<?php
+   			endforeach;
+   			?>
+      	</div>
 	</div>
 </body>
 </html>

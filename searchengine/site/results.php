@@ -53,13 +53,11 @@
 			      }
 			   ?>
 				><a href="?q=<?=$_GET['q']?>&source=telegraafarticle">Telegraaf</a></li>
-				<li class="<?php
-				if( isset( $_GET['timeline'] ) ){
-				  echo "selected";
-				}
-				 ?>
-				 blue">
-   				<a href="?timeline=<?=$_GET['q']?>">Timeline&#8482;</a>
+				<li class="blue">
+   				<a href="?timeline=<?=$_GET['q']?>">Timeline</a>
+				</li>
+				<li class="blue">
+   				<a href="?cloud=<?=$_GET['q']?>">WordCloud</a>
 				</li>
 				<li class="right">
 					<button type="button" class="btn btn-default">
@@ -99,6 +97,11 @@
    			      <?=$result->getDate()?>
    			   </span>
 				</p>
+   			<a href="?doccloud=<?=$result->getId()?>">
+   			   <button type="button" class="btn btn-default right">
+   				  <span class="glyphicon glyphicon-cloud"></span>
+   				</button>
+   			</a>
 			</div>
 		</div>
 		<?php endforeach; ?>

@@ -143,3 +143,27 @@
 .advanced-search table tr td input[type='radio'] {
 	margin-left: 30px;
 }
+.yearresults{
+   padding-top:20px;
+}
+.yearresults ul{
+   clear:both;
+   margin:0px;
+   padding:0px;
+}
+.yearresults h3{
+   clear:both;
+}
+.yearresults li{
+   list-style:none;
+   clear:both;
+}
+.yearresults li span, .yearresults li p{
+   float:left;
+   padding:5px;
+}
+.yearresults li span{
+   font-size:11px;
+   color:#333;
+   padding-top:8px;
+}
