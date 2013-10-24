@@ -8,7 +8,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-static-top" role="navigation">
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" href="./">
 			<img src="assets/img/marxgle-small.png" />
 		</a>
 		<div class="collapse navbar-collapse navbar-ex7-collapse">
@@ -24,11 +24,11 @@
 			<form action="./">
 				<input type="text" class="form-control" name="q" placeholder="e.g. Das Kapital" /><br/>
 				<button type="submit" class="btn btn-default">Marxgle Search</button>
-				<button type="button" class="btn btn-default">I'm feeling gelukkig</button>
+				<button type="submit" name="gelukkig" value="true" class="btn btn-default">I'm feeling gelukkig</button>
 			</form>
 			<br/>
 			<br/>
-			<a href="advanced/">Advanced search</a> - <a href="privacy/">Privacy</a>
+			<a href="advanced.php">Advanced search</a> - <a href="privacy/">Privacy</a>
 		</div>
 	</div>
 </body>

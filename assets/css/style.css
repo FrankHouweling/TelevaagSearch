@@ -1,6 +1,10 @@
 .navbar-nav {
   margin-top:5px;
 }
+.fix1{
+   width:90%;
+   float:left;
+}
 .navbar-brand img {
   margin-top: 6px;
 }
