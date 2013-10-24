@@ -28,7 +28,7 @@
 			</form>
 			<br/>
 			<br/>
-			<a href="advanced/">Advanced search</a> - <a href="privacy/">Privacy</a>
+			<a href="advanced.php">Advanced search</a> - <a href="privacy/">Privacy</a>
 		</div>
 	</div>
 </body>
