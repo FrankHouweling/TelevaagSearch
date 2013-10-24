@@ -51,7 +51,8 @@
 			<div class="clear"></div>
 		</div>
 	<div class="container">
-	  <h3>Belangrijke personen:</h3>
+	  <h3>Important players:</h3>
+	  <p>The following people are identified as important political players on this topic.</p>
 	  <ul class="personlist">
 	  <?php
 	     foreach( $personlist as $person => $cnt ):

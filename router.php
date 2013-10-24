@@ -46,7 +46,7 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
       
       arsort( $personlist );
       
-      render( "searchengine/site/persons.php", array( "personlist" => $personlist ) );
+      render( "searchengine/site/persons.php", array( "personlist" => $personlist, "q" => $_GET['q'] ) );
       
    }
    else if( isset( $_GET['q'] ) ){
