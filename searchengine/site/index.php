@@ -8,7 +8,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-static-top" role="navigation">
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" href="./">
 			<img src="assets/img/marxgle-small.png" />
 		</a>
 		<div class="collapse navbar-collapse navbar-ex7-collapse">

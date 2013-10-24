@@ -9,7 +9,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-static-top" role="navigation">
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" href="./">
 			<img src="assets/img/marxgle-small.png" />
 		</a>
 		<form class="navbar-form navbar-left" role="search">
@@ -78,34 +78,37 @@
 		<?php foreach( $resultset as $result ): ?>
 		<div class="results">
 			<div class="result">
-				<a href="<?=$result->getLink()?>"><?=$result->getTitle()?></a>
-				<span class="url">
-				 <?php 
-				  if( strpos($result->getLink(), "kranten.kb.nl" ) ){
-   				  echo "Telegraaf - ";
-				  }
-				  else{
-   				  echo "Kamervragen - ";
-				  }
-				 ?>
-				  <?=$result->getLink()?>
-				  </span>
-				<?php if($result->hasAuthor()): ?>
-				<span class="author">
-				  <a href="?author=<?=$result->getAuthor()?>"><?=$result->getAuthor()?></a>
-			   </span>
-				<?php endif; ?>
-				<p>
-   				<?=$result->getPreview()?>
-   				<span class="date">
-   			      <?=$result->getDate()?>
+			   <div class="fix1">
+   				<a href="<?=$result->getLink()?>"><?=$result->getTitle()?></a>
+   				<span class="url">
+   				 <?php 
+   				  if( strpos($result->getLink(), "kranten.kb.nl" ) ){
+      				  echo "Telegraaf - ";
+   				  }
+   				  else{
+      				  echo "Kamervragen - ";
+   				  }
+   				 ?>
+   				  <?=$result->getLink()?>
+   				  </span>
+   				<?php if($result->hasAuthor()): ?>
+   				<span class="author">
+   				  <a href="?author=<?=$result->getAuthor()?>"><?=$result->getAuthor()?></a>
    			   </span>
-				</p>
+   				<?php endif; ?>
+   				<p>
+      				<?=$result->getPreview()?>
+      				<span class="date">
+      			      <?=$result->getDate()?>
+      			   </span>
+   				</p>
+   			</div>
    			<a href="?doccloud=<?=$result->getId()?>&orc=<?=$_GET['q']?>">
    			   <button type="button" class="btn btn-default right">
    				  <span class="glyphicon glyphicon-cloud"></span>
    				</button>
    			</a>
+   			<div class="clear"></div>
 			</div>
 		</div>
 		<?php endforeach; ?>
