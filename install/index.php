@@ -7,18 +7,19 @@
  *
  */
 
+/*
 require_once "Kamervragen/Importer.php";
 
 $importer = new KamervragenImporter();
 $importer->runImport();
 
-/*
+*/
+
 require_once "Telegraaf/Importer.php";
 
 // Import Telegraaf Articles
 
 $importer = new TelegraafImporter();
 $importer->runImport();
-*/
 
 ?>
