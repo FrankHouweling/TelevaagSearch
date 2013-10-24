@@ -77,6 +77,8 @@
       	  foreach( $resultset as $result ){
          	  $resultding[date("Y",strtotime($result->getDate()))][] = $result;
       	  }
+      	  
+      	  krsort( $resultding );
       	  ?>
       	   <?php
    			foreach( $resultding as $jaar => $rset ):

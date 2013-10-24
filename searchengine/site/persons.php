@@ -4,25 +4,10 @@
   <title><?=$query?> - Marxgle</title>
   <link href="assets/css/bootstrap.min.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
   <link href="assets/css/style.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
-  <link href="assets/css/cloud.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   
   <script lang="javascript" type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-  
-  <script lang="javascript" type="text/javascript" src="assets/js/cloud.js"></script>
-  
-  <script type="text/javascript">
-      var word_list = new Array(
-        <?php foreach( $topwords as $word => $count ): ?>
-        {text: "<?=$word?>", weight: <?=$count?>},
-        <?php endforeach; ?>
-        {text: "", weight: 0}
-      );
-      $(document).ready(function() {
-        $("#wordcloud").jQCloud(word_list);
-      });
-    </script>
   
 </head>
 <body>
@@ -51,10 +36,10 @@
 				<li class="blue">
    				<a href="?timeline=<?=$q?>">Timeline</a>
 				</li>
-				<li class="selected blue">
+				<li class="blue">
 				  <a href="?cloud=<?=$q?>">WordCloud</a>
 				</li>
-				<li class="blue">
+				<li class="selected blue">
 				  <a href="?q=<?=$q?>&persons">Persons</a>
 				</li>
 				<li class="right">
@@ -66,7 +51,20 @@
 			<div class="clear"></div>
 		</div>
 	<div class="container">
-	  <div id="wordcloud"></div>
+	  <h3>Belangrijke personen:</h3>
+	  <ul class="personlist">
+	  <?php
+	     foreach( $personlist as $person => $cnt ):
+	  ?>
+	  <li>
+	     <a href="">
+	        <span><?=$cnt?></span>
+	        <p><?=$person?></p>
+	     </a>
+	     <div class="clear"></div>
+	  </li>
+	  <?php endforeach;?>
 	</div>
+	</ul>
 </body>
 </html>

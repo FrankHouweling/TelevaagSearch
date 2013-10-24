@@ -167,3 +167,32 @@
    color:#333;
    padding-top:8px;
 }
+.personlist li span, .personlist li p{
+   float:left;
+}
+.personlist{
+   margin:0px;
+   padding:0px;
+}
+.personlist li{
+   clear:both;
+   list-style:none;
+}
+.personlist li span{
+   padding-right:20px;
+   padding-top:4px;
+   padding-left:10px;
+   font-size:12px;
+   color:#444;
+}
+.personlist li p{
+   font-size:16px;
+}
+.personlist li a{
+   display:block;
+   padding-top:10px;
+}
+.personlist li:nth-child(even){
+   background-color:#f7f7f7;
+   display:block;
+}

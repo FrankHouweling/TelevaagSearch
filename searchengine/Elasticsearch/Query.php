@@ -42,6 +42,30 @@ class ElasticsearchQuery{
       return $return;
    }
    
+   function persons( $query, $dataType ){
+      $con = ElasticsearchConnection::getInstance();
+      
+      if( $dataType !== "" )
+         $dataType = $dataType . "/";
+      
+      if( $tot == false ){
+         $tot = ( $van+20 );
+      }
+      
+      $return = $con->send( "GET",  $dataType . "_search", NULL, 
+        '{
+           "from" : 0, "size" : 2500,
+           "fields" : ["persons"],
+           "query": {
+                 "query_string": {
+                     "query": "' . $query . '"
+                 }
+             }
+         }' );
+         
+      return $return;
+   }
+   
    function id( $givenId ){
       $con = ElasticsearchConnection::getInstance();
       
