@@ -14,17 +14,19 @@ class ElasticsearchQuery{
       return $return;
    }
    
-   function advanced( $raw , $dataType ){
+   function advanced( $raw , $dataType, $van = 0, $tot = 20  ){
    	$con = ElasticsearchConnection::getInstance();
 
       if( $dataType !== "" )
          $dataType = $dataType . "/";
          
+    $raw['from'] = $van;
+    $raw['size'] = $tot;
     $return = $con->send( "GET",  $dataType . "_search", NULL, json_encode($raw));
          
     return $return;
    }
-   function search( $query, $dataType = "", $van = 0, $tot = false ){
+   function search( $query, $dataType = "", $van = 0, $tot = 20 ){
       $con = ElasticsearchConnection::getInstance();
       
       if( $dataType !== "" ){
@@ -50,10 +52,6 @@ class ElasticsearchQuery{
                      }, ';
       }
       
-      if( $tot == false ){
-         $tot = ( $van+20 );
-      }
-      
       $return = $con->send( "GET",  $dataType . "_search", NULL, 
         '{
            "from" : ' . $van . ', "size" : ' . $tot . ',
@@ -77,15 +75,12 @@ class ElasticsearchQuery{
       return $return;
    }
    
-   function searchByPerson( $query, $person, $dataType = "", $van = 0, $tot = false ){
+   function searchByPerson( $query, $person, $dataType = "", $van = 0, $tot = 20 ){
        $con = ElasticsearchConnection::getInstance();
       
       if( $dataType !== "" )
          $dataType = $dataType . "/";
       
-      if( $tot == false ){
-         $tot = ( $van+20 );
-      }
       
       $json = '{
            "from" : ' . $van . ', "size" : ' . $tot . ',

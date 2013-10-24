@@ -75,12 +75,12 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
          $source = $_GET['source'];
       }
       
-      $data  = $query->searchByPerson( $_GET['q'],$_GET['person'] , $source );
+      $display['page_num'] = ((empty($_GET['page'])) ? 1 : $_GET['page']);
+      
+      $data  = $query->searchByPerson( $_GET['q'],$_GET['person'] , $source, $display['page_num'] );
       $display = array();
       $display['result_total_num'] = $data->hits->total;
       $display['processing_time'] = $data->tooktime;
-      
-      $display['page_num'] = 1;
       
       // Moving this to a seperate function would be better.. but for now i'm lazy
       
@@ -108,12 +108,12 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
          $source = $_GET['source'];
       }
       
-      $data  = $query->search( $_GET['q'], $source );
       $display = array();
+      $display['page_num'] = ((empty($_GET['page'])) ? 1 : $_GET['page']);
+      $data  = $query->search( $_GET['q'], $source, $display['page_num'] );
+      
       $display['result_total_num'] = $data->hits->total;
       $display['processing_time'] = $data->tooktime;
-      
-      $display['page_num'] = 1;
       
       // Moving this to a seperate function would be better.. but for now i'm lazy
       
@@ -141,14 +141,14 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
    	
    		$search_array = $_SESSION[$_GET['advanced']]['query'];
 
+      $display = array();
+      $display['page_num'] = ((empty($_GET['page'])) ? 1 : $_GET['page']);
    		$query = new ElasticsearchQuery();
-   		$data = $query->advanced($search_array, $_SESSION[$_GET['advanced']]['source']);
+   		$data = $query->advanced($search_array, $_SESSION[$_GET['advanced']]['source'], $display['page_num'] );
    		
-	      $display = array();
 	      $display['result_total_num'] = $data->hits->total;
 	      $display['processing_time'] = $data->tooktime;
 	      
-	      $display['page_num'] = 1;
 	      
 	      // Moving this to a seperate function would be better.. but for now i'm lazy
 	      

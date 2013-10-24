@@ -124,31 +124,58 @@
 
 		<div class="pagination">
 			<ul>
+				<?php
+				
+				$start = 1;
+				$end = $page_num + 5;
+				if($page_num > 5) {
+					$start = $page_num - 5;
+				} else {
+					$end += 5;
+				}
+				$max = ceil($result_total_num/20);
+				if($end > $max) {
+					$end = $max + 1;
+				}
+				unset($_GET['page']);
+				$url = "";
+				foreach($_GET as $key=>$val) {
+					$url = ((empty($url)) ? "" : "?") . $key. "=".$val;
+				}
+				?>
+				<? if($page_num > 1) { ?>
 				<li class="previous">
-					<a href="#">
+					<a href="?<?=$url?>&page=<?=$page_num-1?>">
 						<i class="glyphicon glyphicon-chevron-left"></i><br/>
 						Previous
 					</a>
 				</li>
+				<? } ?>
 				<li>
 					<img src="assets/img/m.png" /><br/><br/>
 				</li>
-				<? for($i=1;$i<10;$i++) { ?>
+				<? for($i=$start;$i<$end;$i++) { ?>
 				<li class="number-item">
-					<a href="#">
+					<? if($i == $page_num) { ?>
+						<img border="0" src="assets/img/a.png" /><br/><?=$i?>
+					<? } else { ?>
+					<a href="?<?=$url?>&page=<?=$i?>">
 						<img border="0" src="assets/img/a.png" /><br/><?=$i?>
 					</a>
+					<? } ?>
 				</li>
 				<? } ?>
 				<li>
 					<img src="assets/img/rxgle.png" /><br/><br/>
 				</li>
+				<? if($page_num < $max) { ?>
 				<li class="next">
-					<a href="#">
+					<a href="?<?=$url?>&page=<?=$page_num+1?>">
 						<i class="glyphicon glyphicon-chevron-right"></i><br/>
 						Next
 					</a>
 				</li>
+				<? } ?>
 			</ul>
 		</div>
 	</div>
