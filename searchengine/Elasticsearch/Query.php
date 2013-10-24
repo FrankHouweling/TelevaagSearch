@@ -119,8 +119,7 @@ class ElasticsearchQuery{
    function persons( $query, $dataType ){
       $con = ElasticsearchConnection::getInstance();
       
-      if( $dataType !== "" )
-         $dataType = $dataType . "/";
+      $dataType = "kamervraag/";
       
       if( $tot == false ){
          $tot = ( $van+20 );
