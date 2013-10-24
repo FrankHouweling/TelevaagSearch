@@ -86,7 +86,7 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
       $query = new ElasticsearchQuery();
       
       $source = "";
-      if( isset($_GET['source']) && in_array($_GET['source'], array("telegraafarticle", "kamervraag")) ){
+      if( isset($_GET['source']) && in_array($_GET['source'], array("telegraafarticle", "kamervraag", "kamervraag-bm25")) ){
          $source = $_GET['source'];
       }
       
