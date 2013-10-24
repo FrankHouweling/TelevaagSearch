@@ -78,11 +78,11 @@ class ElasticsearchQuery{
    function searchByPerson( $query, $person, $dataType = "", $van = 0, $tot = 20 ){
        $con = ElasticsearchConnection::getInstance();
       
-      if( $dataType !== "" )
-         $dataType = $dataType . "/";
+      // Snelle fix, het werkt
       
-      
-      $json = '{
+      $dataType = "kamervraag/";
+         
+         $json = '{
            "from" : ' . $van . ', "size" : ' . $tot . ',
            "query": {
                   "bool": {
@@ -128,7 +128,7 @@ class ElasticsearchQuery{
       
       $return = $con->send( "GET",  $dataType . "_search", NULL, 
         '{
-           "from" : 0, "size" : 2500,
+           "from" : 0, "size" : 5000,
            "fields" : ["persons"],
            "query": {
                  "query_string": {
