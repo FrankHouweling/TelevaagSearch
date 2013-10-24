@@ -18,6 +18,10 @@ class ResultList implements Iterator{
       $this->list[] = new Document( $jsonText );
    }
    
+   public function first(){
+      return $this->list[0];
+   }
+   
    /**
     * 
     * Return the result list as an XML-document so it could be used

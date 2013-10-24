@@ -24,7 +24,7 @@
 			<form action="./">
 				<input type="text" class="form-control" name="q" placeholder="e.g. Das Kapital" /><br/>
 				<button type="submit" class="btn btn-default">Marxgle Search</button>
-				<button type="button" class="btn btn-default">I'm feeling gelukkig</button>
+				<button type="submit" name="gelukkig" value="true" class="btn btn-default">I'm feeling gelukkig</button>
 			</form>
 			<br/>
 			<br/>

@@ -129,6 +129,11 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
             );
       }
       
+      if( isset( $_GET['gelukkig'] ) ){
+         header( "Location: " . $resultlist->first()->getLink() );
+         exit;
+      }
+      
       $display['resultset'] = $resultlist;
    
       render( "searchengine/site/results.php", $display );
