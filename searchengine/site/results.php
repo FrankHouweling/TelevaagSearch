@@ -47,6 +47,15 @@
 			   ><a href="?q=<?=$_GET['q']?>&source=kamervraag">Kamervragen</a></li>
 				<li
 				<?php
+			      if( $_GET['source'] == "kamervraag-bm25" ){
+			         ?>
+			         class="selected"
+			         <?
+			      }
+			   ?>
+				><a href="?q=<?=$_GET['q']?>&source=kamervraag-bm25"><i>Kamervragen (BM25)</i></a></li>
+				<li
+				<?php
 			      if( $_GET['source'] == "telegraafarticle" ){
 			         ?>
 			         class="selected"

@@ -32,6 +32,7 @@
 			<ul>
 			   <li><a href="?q=<?=$q?>">All sources</a></li>
 				<li><a href="?q=<?=$q?>&source=kamervraag">Kamervragen</a></li>
+				<li><a href="?q=<?=$q?>&source=kamervraag-bm25"><i>Kamervragen (BM25)</i></a></li>
 				<li><a href="?q=<?=$q?>&source=telegraafarticle">Telegraaf</a></li>
 				<li class="blue">
    				<a href="?timeline=<?=$q?>">Timeline</a>

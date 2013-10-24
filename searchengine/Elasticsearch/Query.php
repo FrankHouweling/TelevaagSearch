@@ -27,8 +27,28 @@ class ElasticsearchQuery{
    function search( $query, $dataType = "", $van = 0, $tot = false ){
       $con = ElasticsearchConnection::getInstance();
       
-      if( $dataType !== "" )
+      if( $dataType !== "" ){
          $dataType = $dataType . "/";
+         $filter = '';
+      }
+      else{
+         $filter = '"filter" : { 
+                        "not" : { 
+                          "or" : [ 
+                             { 
+                                "type" : { 
+                                   "value" : "kamervraag-bm25" 
+                                } 
+                             }, 
+                             { 
+                                "term" : { 
+                                   "_type" : "kamervraag-bm25" 
+                                } 
+                             } 
+                          ] 
+                        } 
+                     }, ';
+      }
       
       if( $tot == false ){
          $tot = ( $van+20 );
@@ -38,9 +58,14 @@ class ElasticsearchQuery{
         '{
            "from" : ' . $van . ', "size" : ' . $tot . ',
            "query": {
-                 "query_string": {
+                  "filtered" : { 
+                     ' . $filter . '
+                     "query" : { 
+                        "query_string": {
                      "query": "' . $query . '"
                  }
+                     } 
+                  } 
              },
              "highlight" : {
                  "fields" : {
@@ -48,7 +73,7 @@ class ElasticsearchQuery{
                  }
              }
          }' );
-         
+      
       return $return;
    }
    

@@ -87,7 +87,7 @@ class KamervragenImporter implements Importer{
          
          
          $q = new ElasticsearchQuery();
-         $q->insert( "kamervraag", json_encode($jar) );
+         $q->insert( "kamervraag-bm25", json_encode($jar) );
       
    }
    
