@@ -45,8 +45,26 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
       }
       
       arsort( $personlist );
+      $partijen = array();
       
-      render( "searchengine/site/persons.php", array( "personlist" => $personlist, "q" => $_GET['q'] ) );
+      foreach( $personlist as $person => $cnt ){
+         $split1 = explode( "(", $person );
+         $split2 = explode( ")", $split1[1] );
+         $partij = $split2[0];
+         
+         if( in_array($partij, array("minister", "minister-president", "staatssecretaris") ) ){
+            continue;
+         }
+         
+         if( isset( $partijen[$partij] ) ){
+            $partijen[$partij]++;
+         }
+         else{
+            $partijen[$partij] = 1;
+         }
+      }
+      render( "searchengine/site/persons.php", array( "personlist" => $personlist, "q" => $_GET['q'], "partijen" => $partijen ) );
+  
       
    }
    else if( isset( $_GET['q'] ) && isset( $_GET['person'] ) ){
