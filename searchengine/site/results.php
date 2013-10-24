@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <title><?=$query?> - Marxgle</title>
   <link href="assets/css/bootstrap.min.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
   <link href="assets/css/style.css" media="all" rel="stylesheet" rev="stylesheet" type="text/css" />
@@ -34,7 +35,7 @@
 			         <?
 			      }
 			   ?>
-			   ><a href="?q=<?=$_GET['q']?>">Alle bronnen</a></li>
+			   ><a href="?q=<?=$_GET['q']?>">Alle sources</a></li>
 				<li
 				<?php
 			      if( $_GET['source'] == "kamervraag" ){
@@ -58,6 +59,9 @@
 				</li>
 				<li class="blue">
    				<a href="?cloud=<?=$_GET['q']?>">WordCloud</a>
+				</li>
+				<li class="blue">
+   				<a href="?q=<?=$_GET['q']?>&persons">Persons</a>
 				</li>
 				<li class="right">
 					<button type="button" class="btn btn-default">
@@ -97,7 +101,7 @@
    			      <?=$result->getDate()?>
    			   </span>
 				</p>
-   			<a href="?doccloud=<?=$result->getId()?>">
+   			<a href="?doccloud=<?=$result->getId()?>&orc=<?=$_GET['q']?>">
    			   <button type="button" class="btn btn-default right">
    				  <span class="glyphicon glyphicon-cloud"></span>
    				</button>

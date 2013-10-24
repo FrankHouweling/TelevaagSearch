@@ -24,7 +24,32 @@ function render( $vars ){
 }
 
 if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
-   if( isset( $_GET['q'] ) ){
+   if( isset( $_GET['q'] ) && isset( $_GET['persons'] ) ){
+      
+      $query = new ElasticsearchQuery();
+      $data = $query->persons( $_GET['q'], "kamervraag" );
+      
+      $personlist = array();
+      
+      foreach( $data->hits->hits as $hit ){
+         foreach( $hit->fields->persons as $person ){
+            if( $person == " () ()" )
+               break;
+            if( isset( $personlist[$person] ) ){
+               $personlist[$person]++;
+            }
+            else{
+               $personlist[$person] = 1;
+            }
+         }
+      }
+      
+      arsort( $personlist );
+      
+      render( "searchengine/site/persons.php", array( "personlist" => $personlist ) );
+      
+   }
+   else if( isset( $_GET['q'] ) ){
    
       $query = new ElasticsearchQuery();
       
@@ -86,10 +111,14 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
    
       $query = new ElasticsearchQuery();
       
-      if( isset( $_GET['cloud'] ) )
+      if( isset( $_GET['cloud'] ) ){
+         $q = $_GET['cloud'];
          $data  = $query->search( $_GET['cloud'], "", 0, 100 );
-      else
+      }
+      else{
+         $q = $_GET['orc'];
          $data = $query->id( $_GET['doccloud'] );
+      }
       
       $resultlist =  new ResultList();
       foreach( $data->hits->hits as $data ){
@@ -135,7 +164,7 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
          
       }
       
-      foreach( array("aan", "de", "over", "het", "een", "en", "van", "met", "in", "of", "per") as $stopwoord ){
+      foreach( array("aan", "de", "over", "het", "een", "en", "van", "met", "in", "of", "per", "voor", "is", "te", "dat", "op", "zijn", "niet", "die", "u", "door", "om", "ook", "er", "bij", "dit", "hij", "zij", "tot", "al", "ik", "heeft", "geen", "niet", "mijn", "De", "als", "hun", "hen", "Een", "Het", "naar", "ja", "nee", "was", "In", "in", "dan", "had", "uit", "gaan", "tegen", "zou", "daar", "Dat", "via", "zal", "hebben", "waarmee") as $stopwoord ){
          unset($wordset[$stopwoord]);
       }
       
@@ -152,7 +181,7 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
          $newwordset[$word] = ( (($score-$minscore)/$maxscore)*10+1 );
       }
       
-      render( "searchengine/site/cloud.php", array( "q" => $_GET['cloud'], "topwords" => $newwordset ));
+      render( "searchengine/site/cloud.php", array( "q" => $q, "topwords" => $newwordset ));
    }
    else{
       render( "searchengine/site/index.php" );
