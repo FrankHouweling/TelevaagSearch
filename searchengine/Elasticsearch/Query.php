@@ -42,6 +42,50 @@ class ElasticsearchQuery{
       return $return;
    }
    
+   function searchByPerson( $query, $person, $dataType = "", $van = 0, $tot = false ){
+       $con = ElasticsearchConnection::getInstance();
+      
+      if( $dataType !== "" )
+         $dataType = $dataType . "/";
+      
+      if( $tot == false ){
+         $tot = ( $van+20 );
+      }
+      
+      $json = '{
+           "from" : ' . $van . ', "size" : ' . $tot . ',
+           "query": {
+                  "bool": {
+                     "must": [
+                        {
+                           "query_string": {
+                              "query": "' . $query . '"
+                           }
+                        },
+                        {"query_string":{"default_field":"kamervraag.persons","query":"' . $person . '"}}
+                     ] 
+                  }
+             },
+             "highlight" : {
+                 "fields" : {
+                     "text" : {"fragment_size" : 150, "number_of_fragments" : 3}
+                 }
+             }
+         }';
+         
+      $return = $con->send( "GET",  $dataType . "_search", NULL, 
+        $json );
+      
+      foreach( $return->hits->hits as $id => $item ){
+         if( !in_array( $person, $item->_source->persons ) ){
+            unset( $return->hits->hits[$id] );
+            $return->hits->total--;
+         }
+      }
+        
+      return $return;
+   }
+   
    function persons( $query, $dataType ){
       $con = ElasticsearchConnection::getInstance();
       

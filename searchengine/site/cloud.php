@@ -15,7 +15,7 @@
   <script type="text/javascript">
       var word_list = new Array(
         <?php foreach( $topwords as $word => $count ): ?>
-        {text: "<?=$word?>", weight: <?=$count?>, link: '?cloud=<?=$word?>'},
+        {text: "<?=str_replace("</em>","",str_replace("<em>","",$word))?>", weight: <?=$count?>, link: '?cloud=<?=str_replace("</em>","",str_replace("<em>","",$word))?>'},
         <?php endforeach; ?>
         {text: "", weight: 0}
       );

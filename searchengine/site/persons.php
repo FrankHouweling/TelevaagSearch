@@ -60,7 +60,7 @@
 	     foreach( $personlist as $person => $cnt ):
 	  ?>
 	  <li>
-	     <a href="">
+	     <a href="?q=<?=$q?>&person=<?=$person?>">
 	        <span><?=$cnt?></span>
 	        <p><?=$person?></p>
 	     </a>
