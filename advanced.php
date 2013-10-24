@@ -183,7 +183,7 @@ if(isset($_GET['hash'])) {
 					<td>from date:</td><td><input type="text" class="date" name="from_date" value="<?=$values['from_date']?>" /> to: <input type="text" class="date" name="to_date" value="<?=$values['to_date']?>" /></td>
 				</tr>
 				<tr>
-					<td>[DOESNT WORK] type:</td><td>
+					<td>type:</td><td>
 						<label><input type="radio" name="type" value="both" checked="true"> Both</label>
 						<label><input type="radio" name="type" value="kamervraag"> Kamervraag</label>
 						<label><input type="radio" name="type" value="telegraafarticle"> Telegraaf article</label>
