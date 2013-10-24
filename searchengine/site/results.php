@@ -35,7 +35,7 @@
 			         <?
 			      }
 			   ?>
-			   ><a href="?q=<?=$_GET['q']?>">Alle sources</a></li>
+			   ><a href="?q=<?=$_GET['q']?>">All sources</a></li>
 				<li
 				<?php
 			      if( $_GET['source'] == "kamervraag" ){

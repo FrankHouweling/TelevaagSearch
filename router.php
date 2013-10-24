@@ -46,8 +46,40 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
       
       arsort( $personlist );
       
-      render( "searchengine/site/persons.php", array( "personlist" => $personlist ) );
+      render( "searchengine/site/persons.php", array( "personlist" => $personlist, "q" => $_GET['q'] ) );
       
+   }
+   else if( isset( $_GET['q'] ) && isset( $_GET['person'] ) ){
+      $query = new ElasticsearchQuery();
+      
+      $source = "";
+      if( isset($_GET['source']) && in_array($_GET['source'], array("telegraafarticle", "kamervraag")) ){
+         $source = $_GET['source'];
+      }
+      
+      $data  = $query->searchByPerson( $_GET['q'],$_GET['person'] , $source );
+      $display = array();
+      $display['result_total_num'] = $data->hits->total;
+      $display['processing_time'] = $data->tooktime;
+      
+      $display['page_num'] = 1;
+      
+      // Moving this to a seperate function would be better.. but for now i'm lazy
+      
+      $resultlist =  new ResultList();
+      foreach( $data->hits->hits as $data ){
+         $resultlist->add(
+               new Document(
+                  $data->_id, $data->_source->title, NULL, 
+                 $data->_source->link, $data->highlight->text[0],
+                 $data->_source->date, $data->_source->text
+               )
+            );
+      }
+      
+      $display['resultset'] = $resultlist;
+   
+      render( "searchengine/site/results.php", $display );
    }
    else if( isset( $_GET['q'] ) ){
    
@@ -195,7 +227,7 @@ if( !isset($_SERVER['PATH_INFO']) OR $_SERVER['PATH_INFO'] == NULL ){
          
       }
       
-      foreach( array("aan", "de", "over", "het", "een", "en", "van", "met", "in", "of", "per", "voor", "is", "te", "dat", "op", "zijn", "niet", "die", "u", "door", "om", "ook", "er", "bij", "dit", "hij", "zij", "tot", "al", "ik", "heeft", "geen", "niet", "mijn", "De", "als", "hun", "hen", "Een", "Het", "naar", "ja", "nee", "was", "In", "in", "dan", "had", "uit", "gaan", "tegen", "zou", "daar", "Dat", "via", "zal", "hebben", "waarmee") as $stopwoord ){
+      foreach( array("aan", "de", "over", "het", "een", "en", "van", "met", "in", "of", "per", "voor", "is", "te", "dat", "op", "zijn", "niet", "die", "u", "door", "om", "ook", "er", "bij", "dit", "hij", "zij", "tot", "al", "ik", "heeft", "geen", "niet", "mijn", "De", "als", "hun", "hen", "Een", "Het", "naar", "ja", "nee", "was", "In", "in", "dan", "had", "uit", "gaan", "tegen", "zou", "daar", "Dat", "via", "zal", "hebben", "waarmee", "worden", "wordt", "deze", "nog", "onze", "ons", "Van", "nu", "Ingezonden", "Antwoorden", "Vragen", "lid", "der") as $stopwoord ){
          unset($wordset[$stopwoord]);
       }
       

@@ -30,7 +30,7 @@
 	</nav>
 		<div class="filter">
 			<ul>
-			   <li><a href="?q=<?=$q?>">Alle bronnen</a></li>
+			   <li><a href="?q=<?=$q?>">All sources</a></li>
 				<li><a href="?q=<?=$q?>&source=kamervraag">Kamervragen</a></li>
 				<li><a href="?q=<?=$q?>&source=telegraafarticle">Telegraaf</a></li>
 				<li class="selected blue">
@@ -39,10 +39,15 @@
 				<li class="blue">
    				<a href="?cloud=<?=$q?>">WordCloud</a>
 				</li>
+				<li class="blue">
+   				<a href="?q=<?=$q?>&persons">Persons</a>
+				</li>
 				<li class="right">
-					<button type="button" class="btn btn-default">
-						<span class="glyphicon glyphicon-cog"></span>
-					</button>
+					<a href="advanced.php">
+   					<button type="button" class="btn btn-default">
+   						<span class="glyphicon glyphicon-cog"></span>
+   					</button>
+					</a>
 				</li>
 			</ul>
 			<div class="clear"></div>

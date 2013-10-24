@@ -43,21 +43,24 @@
 				  <a href="?q=<?=$q?>&persons">Persons</a>
 				</li>
 				<li class="right">
-					<button type="button" class="btn btn-default">
-						<span class="glyphicon glyphicon-cog"></span>
-					</button>
+					<a href="advanced.php">
+   					<button type="button" class="btn btn-default">
+   						<span class="glyphicon glyphicon-cog"></span>
+   					</button>
+					</a>
 				</li>
 			</ul>
 			<div class="clear"></div>
 		</div>
 	<div class="container">
-	  <h3>Belangrijke personen:</h3>
+	  <h3>Important players:</h3>
+	  <p>The following people are identified as important political players on this topic.</p>
 	  <ul class="personlist">
 	  <?php
 	     foreach( $personlist as $person => $cnt ):
 	  ?>
 	  <li>
-	     <a href="">
+	     <a href="?q=<?=$q?>&person=<?=$person?>">
 	        <span><?=$cnt?></span>
 	        <p><?=$person?></p>
 	     </a>
