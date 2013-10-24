@@ -28,7 +28,7 @@
         ]);
 
         var options = {
-          title: 'Politieke Partijen en \'<?=$q?>\''
+          title: 'Political Parties and \'<?=$q?>\''
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
